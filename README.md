@@ -1,3 +1,5 @@
+Trabalhando na minha task...
+
 # Camel UI
 
 Este projeto é uma UI do sistema da Loja Virtual da Camel, para atendimento a clientes, utilizando React (v18.2.0).
