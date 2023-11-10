@@ -1,19 +1,14 @@
 import Input from '../../components/forms/Input'
 
-import { FiMail } from 'react-icons/fi'
+import AuthLayout from '../../components/layout/authLayout'
 
 function Register() {
   return (
     <>
-      <h1>Registro teste</h1>
-      <br />
-      <Input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Sua senha"
-        icon={FiMail}
-      />
+      <AuthLayout>
+        <h1>Componente 1</h1>
+        <h1>Componente 2</h1>
+      </AuthLayout>
     </>
   )
 }
