@@ -1,5 +1,3 @@
-import Input from '../../components/forms/Input'
-
 import AuthLayout from '../../components/layout/authLayout'
 
 function Register() {
