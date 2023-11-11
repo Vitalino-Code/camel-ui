@@ -11,6 +11,13 @@ export default createGlobalStyle`
     font-size: 62.5%;
   }
 
+  body {
+    background-color: ${({ theme }) => theme.COLORS.BODY_BG};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+
+    -webkit-font-smoothing: antialiased;
+  }
+
   body, input, textarea, button {
     font-family: "Inter", sans-serif;
     font-size: 1.6rem;
@@ -26,10 +33,15 @@ export default createGlobalStyle`
     text-decoration: none;
     color: ${({ theme }) => theme.COLORS.WHITE};
   }
-  
-  button {
-    background: none;
+
+  a, button {
     border: none;
+    background: none;
     cursor: pointer;
+    transition: filter 0.2s;
+  }
+  
+  a:hover, button:hover {
+    filter: brightness(0.9);
   }
 `
