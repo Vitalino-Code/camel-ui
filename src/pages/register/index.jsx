@@ -1,12 +1,6 @@
-
-import React from 'react'
-
 import AuthLayout from '../../components/layout/authLayout'
 import Input from '../../components/forms/Input/index'
-import SubmitButton from '../../components/forms/submitButton/index'
-
 import { FiMail } from 'react-icons/fi'
-
 
 function Register() {
   return (
