@@ -1,20 +1,18 @@
-import React from 'react'
-
 import Input from '../../components/forms/Input/index'
 
-import { ReactComponent as Mail } from '../../assets/icons/mail.svg'
+import { FiMail } from 'react-icons/fi'
 
 function Register() {
   return (
     <>
-      <h1>Registro "teste"</h1>
+      <h1>Registro teste</h1>
       <Input
         type="password"
         name="password"
         id="password"
-        placeholder="Sua senha">
-        <Mail />
-      </Input>
+        placeholder="Sua senha"
+        icon={FiMail}
+      />
     </>
   )
 }

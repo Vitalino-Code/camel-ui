@@ -9,17 +9,16 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 3rem;
 
-  svg {
-    width: 24px;
-    height: 24px;
-    fill: #2d3142;
-  }
+  color: ${({ theme }) => theme.COLORS.GRAY};
 
   &:focus-within {
     outline: ${({ theme }) => theme.COLORS.ORANGE} 2px solid;
   }
 
-  &:focus-within > svg,
+  &:focus-within > svg {
+    color: ${({ theme }) => theme.COLORS.ORANGE};
+  }
+
   div:focus-within > button > svg {
     fill: ${({ theme }) => theme.COLORS.ORANGE};
   }
@@ -37,7 +36,7 @@ export const Wrapper = styled.div`
   }
 
   div > button > svg {
-    fill: #2d3142;
+    fill: ${({ theme }) => theme.COLORS.GRAY};
   }
 
   input {
