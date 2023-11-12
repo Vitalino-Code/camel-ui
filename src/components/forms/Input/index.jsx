@@ -1,33 +1,48 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { Wrapper } from './styles'
 
-import {ReactComponent as VisibilityOn} from "../../../assets/icons/visibilityOn.svg"
-import {ReactComponent as VisibilityOff} from "../../../assets/icons/visibilityOff.svg"
+import { ReactComponent as VisibilityOn } from '../../../assets/icons/visibilityOn.svg'
+import { ReactComponent as VisibilityOff } from '../../../assets/icons/visibilityOff.svg'
 
-function Input(props) {
-  const [type, setType] = useState('')
+function Input({
+  type,
+  name,
+  id,
+  placeholder,
+  autoComplete,
+  required,
+  handleChange,
+  icon: Icon,
+}) {
+  const [inputPasswordType, setInputPasswordType] = useState('')
 
   function changeVisibility() {
-    type === 'text' ? setType('password') : setType('text')
+    inputPasswordType === 'text'
+      ? setInputPasswordType('password')
+      : setInputPasswordType('text')
   }
 
   return (
     <Wrapper>
-      {props.children}
+      {Icon && <Icon size={24} />}
       <div>
         <input
-          type={type || props.type}
-          name={props.name}
-          id={props.id}
-          placeholder={props.placeholder}
-          autoComplete={props.autoComplete}
-          required={props.required}
-          onChange={props.handleChange}
+          type={inputPasswordType || type}
+          name={name}
+          id={id}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          required={required}
+          onChange={handleChange}
         />
-        {props.name === 'password' || props.name === 'confirmPassword' ? (
+        {name === 'password' || name === 'confirmPassword' ? (
           <button type="button" onClick={() => changeVisibility()}>
-            {type === 'text' ? <VisibilityOff /> : <VisibilityOn />}
+            {inputPasswordType === 'text' ? (
+              <VisibilityOn />
+            ) : (
+              <VisibilityOff />
+            )}
           </button>
         ) : (
           ''
