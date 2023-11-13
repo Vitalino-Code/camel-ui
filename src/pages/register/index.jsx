@@ -1,5 +1,4 @@
-import Input from '../../components/forms/Input/index'
-import SubmitButton from '../../components/forms/submitButton/index'
+import Input from '../../components/forms/Input'
 
 import { FiMail } from 'react-icons/fi'
 
