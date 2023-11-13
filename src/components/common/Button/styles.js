@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
+export const Container = styled.button`
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.ORANGE};
   padding-block: 1.4rem;
@@ -15,9 +15,4 @@ export const Button = styled.button`
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.6rem;
-
-  &:hover {
-    filter: brightness(1.15);
-  }
 `

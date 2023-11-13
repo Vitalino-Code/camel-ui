@@ -22,7 +22,12 @@
       "warn",
       { "allowConstantExport": true }
     ],
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "import/no-commonjs": "error",
     "no-console": "warn",
