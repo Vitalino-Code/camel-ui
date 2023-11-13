@@ -1,9 +1,9 @@
-import React, { Children } from 'react'
+import { Children } from 'react'
 
 import { Layout } from './styles'
 
-function AuthLayout(props) {
-  const Elements = Children.toArray(props.children)
+function AuthLayout({ children }) {
+  const Elements = Children.toArray(children)
   return (
     <Layout>
       <div>
