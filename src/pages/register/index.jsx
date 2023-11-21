@@ -14,7 +14,7 @@ import { Fildset, InfoArea } from './styles'
 function Register() {
   return (
     <>
-      <AuthLayout reverse="true">
+      <AuthLayout reverse>
         <Fildset>
           <h2>Crie sua conta</h2>
           <form>

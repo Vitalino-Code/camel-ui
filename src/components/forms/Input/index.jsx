@@ -38,7 +38,7 @@ function Input({
         />
         {name === 'password' || name === 'confirmPassword' ? (
           <button type="button" onClick={() => changeVisibility()}>
-            {inputPasswordType === 'text' ? <AiFillEye /> : <BsEyeSlashFill />}
+            {inputPasswordType === 'text' ? <BsEyeSlashFill /> : <AiFillEye />}
           </button>
         ) : (
           ''
