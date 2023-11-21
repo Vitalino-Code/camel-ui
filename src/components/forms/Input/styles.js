@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  background-color: var(--input-bg);
+  background-color: ${({ theme }) => theme.COLORS.INPUT_BG};
   padding: 1.6rem;
   border-radius: 0.5rem;
 
@@ -44,14 +44,14 @@ export const Wrapper = styled.div`
     border: none;
     outline: none;
 
-    color: var(--white);
+    color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 1.6rem;
 
     width: 100%;
   }
 
   input::placeholder {
-    color: var(--input-description);
+    color: ${({ theme }) => theme.COLORS.INPUT_DESCRIPTION};
     font-size: 1.6rem;
   }
 `

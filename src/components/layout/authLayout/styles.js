@@ -11,9 +11,9 @@ export const Layout = styled.div`
   background-color: ${({ theme }) => theme.COLORS.GRAY};
   color: ${({ theme }) => theme.COLORS.WHITE};
 
-  div {
+  & > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: ${reverse => (reverse ? 'column-reverse' : 'column')};
     gap: 5rem;
 
     margin: 7rem 2rem;
@@ -42,7 +42,7 @@ export const Layout = styled.div`
   @media (min-width: 1024px) {
     background-color: ${({ theme }) => theme.COLORS.BODY_BG};
 
-    div {
+    & > div {
       display: flex;
       flex-direction: row;
       align-items: center;

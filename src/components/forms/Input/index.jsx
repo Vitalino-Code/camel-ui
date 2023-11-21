@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { Wrapper } from './styles'
 
-import { ReactComponent as VisibilityOn } from '../../../assets/icons/visibilityOn.svg'
-import { ReactComponent as VisibilityOff } from '../../../assets/icons/visibilityOff.svg'
+import { AiFillEye } from 'react-icons/ai'
+import { BsEyeSlashFill } from 'react-icons/bs'
 
 function Input({
   type,
@@ -38,11 +38,7 @@ function Input({
         />
         {name === 'password' || name === 'confirmPassword' ? (
           <button type="button" onClick={() => changeVisibility()}>
-            {inputPasswordType === 'text' ? (
-              <VisibilityOn />
-            ) : (
-              <VisibilityOff />
-            )}
+            {inputPasswordType === 'text' ? <AiFillEye /> : <BsEyeSlashFill />}
           </button>
         ) : (
           ''
