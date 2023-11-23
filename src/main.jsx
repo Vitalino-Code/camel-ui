@@ -5,7 +5,8 @@ import GlobalStyles from './styles/global'
 import theme from './styles/theme'
 import { ThemeProvider } from 'styled-components'
 
-import Register from './pages/register/index'
+import Register from './pages/register'
+import Login from './pages/login'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -15,6 +16,7 @@ root.render(
       <GlobalStyles />
       <Routes>
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </ThemeProvider>
   </Router>,

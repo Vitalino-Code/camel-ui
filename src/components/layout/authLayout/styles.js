@@ -13,7 +13,7 @@ export const Layout = styled.div`
 
   & > div {
     display: flex;
-    flex-direction: ${reverse => (reverse ? 'column-reverse' : 'column')};
+    flex-direction: ${props => (props.$reverse ? 'column-reverse' : 'column')};
     gap: 5rem;
 
     margin: 7rem 2rem;

@@ -5,7 +5,7 @@ import { Layout } from './styles'
 function AuthLayout({ children, reverse }) {
   const Elements = Children.toArray(children)
   return (
-    <Layout reverse={reverse || false}>
+    <Layout $reverse={reverse}>
       <div>
         {Elements[0]}
         <hr />
