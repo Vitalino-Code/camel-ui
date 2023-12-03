@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 
 import Register from './pages/register'
 import Login from './pages/login'
+import Home from './pages/home'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -17,6 +18,7 @@ root.render(
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </ThemeProvider>
   </Router>,
