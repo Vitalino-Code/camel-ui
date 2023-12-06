@@ -36,7 +36,7 @@ function Input({
           required={required}
           onChange={handleChange}
         />
-        {name === 'password' || name === 'confirmPassword' ? (
+        {name === 'password' || name === 'confirmedPassword' ? (
           <button type="button" onClick={() => changeVisibility()}>
             {inputPasswordType === 'text' ? <BsEyeSlashFill /> : <AiFillEye />}
           </button>

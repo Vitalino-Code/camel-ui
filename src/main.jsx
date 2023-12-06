@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import GlobalStyles from './styles/global'
 import theme from './styles/theme'
@@ -13,6 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <Router>
+    <ToastContainer theme="dark" />
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Routes>

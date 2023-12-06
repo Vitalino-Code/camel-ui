@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import AuthLayout from '../../components/layout/authLayout'
 import Input from '../../components/forms/Input'
@@ -11,8 +12,20 @@ import { FaGoogle } from 'react-icons/fa6'
 import { FaFacebook } from 'react-icons/fa'
 
 import { Fildset, InfoArea } from './styles'
+import { createSession } from './login.dao'
 
 function Login() {
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
+
+  const handleChange = e => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    createSession(user, navigate)
+  }
   return (
     <AuthLayout>
       <InfoArea>
@@ -22,7 +35,7 @@ function Login() {
         <h1>Faça seu login na plataforma</h1>
       </InfoArea>
       <Fildset>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <Input
               type="email"
@@ -31,6 +44,8 @@ function Login() {
               placeholder="Seu e-mail"
               autoComplete="off"
               icon={LuMail}
+              required
+              handleChange={handleChange}
             />
             <Input
               type="password"
@@ -38,6 +53,8 @@ function Login() {
               id="password"
               placeholder="Sua senha"
               icon={BiLock}
+              required
+              handleChange={handleChange}
             />
             <Link to={'/'}>Esqueci minha senha</Link>
           </div>
