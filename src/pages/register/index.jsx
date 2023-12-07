@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { createUser } from './register.dao'
 
 import AuthLayout from '../../components/layout/authLayout'
 import Input from '../../components/forms/Input'
@@ -10,14 +12,27 @@ import { BiUser, BiLock } from 'react-icons/bi'
 import { LuMail } from 'react-icons/lu'
 
 import { Fildset, InfoArea } from './styles'
+import { useState } from 'react'
 
 function Register() {
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
+
+  const handleChange = e => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    createUser(user, navigate)
+  }
+
   return (
     <>
       <AuthLayout reverse>
         <Fildset>
           <h2>Crie sua conta</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <Input
                 type="text"
@@ -25,7 +40,9 @@ function Register() {
                 id="name"
                 placeholder="Seu nome"
                 autoComplete="off"
+                required
                 icon={BiUser}
+                handleChange={handleChange}
               />
               <Input
                 type="email"
@@ -33,7 +50,9 @@ function Register() {
                 id="email"
                 placeholder="Seu e-mail"
                 autoComplete="off"
+                required
                 icon={LuMail}
+                handleChange={handleChange}
               />
               <Input
                 type="password"
@@ -41,13 +60,17 @@ function Register() {
                 id="password"
                 placeholder="Sua senha"
                 icon={BiLock}
+                required
+                handleChange={handleChange}
               />
               <Input
                 type="password"
-                name="confirmPassword"
-                id="confirmPassword"
+                name="confirmedPassword"
+                id="confirmedPassword"
                 placeholder="Confirme sua senha"
                 icon={BiLock}
+                required
+                handleChange={handleChange}
               />
             </div>
             <Button text="Cadastrar" />
