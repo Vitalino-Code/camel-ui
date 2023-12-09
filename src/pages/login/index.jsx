@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
 import AuthLayout from '../../components/layout/authLayout'
@@ -12,11 +12,11 @@ import { FaGoogle } from 'react-icons/fa6'
 import { FaFacebook } from 'react-icons/fa'
 
 import { Fildset, InfoArea } from './styles'
-import { createSession } from './login.dao'
+import { useSession } from '../../hooks/auth/useSession'
 
 function Login() {
   const [user, setUser] = useState({})
-  const navigate = useNavigate()
+  const { createSession } = useSession()
 
   const handleChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value })
@@ -24,7 +24,7 @@ function Login() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    createSession(user, navigate)
+    createSession(user)
   }
   return (
     <AuthLayout>
