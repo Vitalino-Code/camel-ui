@@ -48,7 +48,7 @@ export const InfoArea = styled.div`
   }
 `
 
-export const Fildset = styled.div`
+export const Fieldset = styled.div`
   & > h2 {
     font-size: 2rem;
   }

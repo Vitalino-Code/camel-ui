@@ -1,38 +1,66 @@
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { createUser } from './register.dao'
-
-import AuthLayout from '../../components/layout/authLayout'
 import Input from '../../components/forms/Input'
 import Button from '../../components/common/Button'
+import AuthLayout from '../../components/layout/authLayout'
+
+import { LuMail } from 'react-icons/lu'
+import { BiUser, BiLock } from 'react-icons/bi'
+import { FaArrowLeftLong } from 'react-icons/fa6'
 
 import logo from '../../assets/images/logo.png'
-import { FaArrowLeftLong } from 'react-icons/fa6'
-import { BiUser, BiLock } from 'react-icons/bi'
-import { LuMail } from 'react-icons/lu'
 
-import { Fildset, InfoArea } from './styles'
-import { useState } from 'react'
+import { Fieldset, InfoArea } from './styles'
 
-function Register() {
-  const [user, setUser] = useState({})
+import { useCreateUser } from '../../hooks/dataCreating/useCreateUser'
+
+const SignUp = () => {
   const navigate = useNavigate()
 
-  const handleChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value })
+  const [user, setUser] = useState({})
+
+  const { isLoading, createUser } = useCreateUser()
+
+  const handleError = error => {
+    if (error) {
+      if (error.response) {
+        if (error.response.data.message === 'Falha na requisição') {
+          toast.warn(error.response.data.details[0].message)
+        } else {
+          toast.warn(error.response.data.message, { toastId: 'warnning' })
+        }
+      } else {
+        return toast.error('Não foi possível criar sua conta.')
+      }
+    }
   }
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    createUser(user, navigate)
+  const handleSuccess = () => {
+    setUser({})
+
+    toast.success('Sua conta foi criada com sucesso!')
+
+    navigate('/')
+  }
+
+  const handleInputChange = event => {
+    setUser({ ...user, [event.target.name]: event.target.value })
+  }
+
+  const handleSignUp = async event => {
+    event.preventDefault()
+    await createUser(user, handleSuccess, handleError)
   }
 
   return (
     <>
       <AuthLayout reverse>
-        <Fildset>
+        <Fieldset>
           <h2>Crie sua conta</h2>
-          <form onSubmit={handleSubmit}>
+
+          <form onSubmit={handleSignUp}>
             <div>
               <Input
                 type="text"
@@ -42,8 +70,9 @@ function Register() {
                 autoComplete="off"
                 required
                 icon={BiUser}
-                handleChange={handleChange}
+                handleChange={handleInputChange}
               />
+
               <Input
                 type="email"
                 name="email"
@@ -52,8 +81,9 @@ function Register() {
                 autoComplete="off"
                 required
                 icon={LuMail}
-                handleChange={handleChange}
+                handleChange={handleInputChange}
               />
+
               <Input
                 type="password"
                 name="password"
@@ -61,8 +91,9 @@ function Register() {
                 placeholder="Sua senha"
                 icon={BiLock}
                 required
-                handleChange={handleChange}
+                handleChange={handleInputChange}
               />
+
               <Input
                 type="password"
                 name="confirmedPassword"
@@ -70,19 +101,23 @@ function Register() {
                 placeholder="Confirme sua senha"
                 icon={BiLock}
                 required
-                handleChange={handleChange}
+                handleChange={handleInputChange}
               />
             </div>
-            <Button text="Cadastrar" />
+
+            <Button text="Cadastrar" disabled={isLoading} />
           </form>
-        </Fildset>
+        </Fieldset>
+
         <InfoArea>
           <Link to={'/'}>
             <img src={logo} alt="logo" />
           </Link>
+
           <h1>Melhor distribuidora da região</h1>
           <h3>Material elétrico com o melhor preço, é na Camel</h3>
-          <Link to={'/login'}>
+
+          <Link to={-1}>
             <FaArrowLeftLong /> Voltar para o login
           </Link>
         </InfoArea>
@@ -91,4 +126,4 @@ function Register() {
   )
 }
 
-export default Register
+export { SignUp }
