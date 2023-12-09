@@ -1,9 +1,12 @@
-import { useAuth } from '../contexts/authContext'
+import { BrowserRouter } from 'react-router-dom'
+
 import { AppRoutes } from './app.routes'
 import { AuthRoutes } from './auth.routes'
 
-export function RoutesManager() {
-  const { user } = useAuth
+import { useAuth } from '../contexts/AuthContext'
 
-  return <>{user ? <AuthRoutes /> : <AppRoutes />}</>
+export const RoutesManager = () => {
+  const { user } = useAuth()
+
+  return <BrowserRouter>{user ? <AppRoutes /> : <AuthRoutes />}</BrowserRouter>
 }

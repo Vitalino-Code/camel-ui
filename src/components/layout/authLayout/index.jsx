@@ -2,7 +2,7 @@ import { Children } from 'react'
 
 import { Layout } from './styles'
 
-function AuthLayout({ children, reverse }) {
+const AuthLayout = ({ children, reverse }) => {
   const Elements = Children.toArray(children)
   return (
     <Layout $reverse={reverse}>

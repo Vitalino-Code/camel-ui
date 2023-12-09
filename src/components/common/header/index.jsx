@@ -1,16 +1,18 @@
+import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Button from '../Button'
 
-import logo from '../../../assets/images/logo.png'
+import { FaUser } from 'react-icons/fa'
+import { IoExit } from 'react-icons/io5'
+import { IoClose } from 'react-icons/io5'
+import { IoMdSearch } from 'react-icons/io'
 import { PiUserList } from 'react-icons/pi'
 import { TiShoppingCart } from 'react-icons/ti'
-import { IoExit } from 'react-icons/io5'
-import { FaUser } from 'react-icons/fa'
-import { IoMdSearch } from 'react-icons/io'
 import { HiOutlineMenuAlt2 } from 'react-icons/hi'
-import { IoClose } from 'react-icons/io5'
+
+import logo from '../../../assets/images/logo.png'
 
 import {
   Container,
@@ -24,9 +26,53 @@ import {
   SearchBar,
 } from './styles'
 
-function Header() {
-  const [showToggleCategories, setShowToggleCategories] = useState(false)
+import { useSignOut } from '../../../hooks/auth/useSignOut'
+
+import { useAuth } from '../../../contexts/AuthContext'
+
+const Header = () => {
+  const navigate = useNavigate()
+
   const [showUserArea, setShowUserArea] = useState(false)
+  const [showToggleCategories, setShowToggleCategories] = useState(false)
+
+  const { signOut } = useSignOut()
+
+  const { user } = useAuth()
+
+  const handleError = error => {
+    if (error) {
+      if (error.response) {
+        return toast.error(error.response.data.message)
+      } else {
+        return toast.error('Não foi possível entrar na sua conta.')
+      }
+    }
+  }
+
+  const handleSuccess = () => {
+    toast('Até logo! 🥺', {
+      progressStyle: {
+        background: '#f08605',
+      },
+    })
+
+    navigate('/')
+  }
+
+  const handleSignOut = async event => {
+    event.preventDefault()
+
+    const checkConfirm = confirm('Tem certeza que deseja sair da sua conta?')
+
+    if (checkConfirm) {
+      await signOut(handleSuccess, handleError)
+    }
+  }
+
+  const handleSignIn = () => {
+    navigate('/signin')
+  }
 
   useEffect(() => {
     if (showToggleCategories) {
@@ -36,6 +82,8 @@ function Header() {
         document.documentElement.style.overflowY = 'auto'
       }, 200)
     }
+
+    // setUserData
   }, [showToggleCategories])
 
   return (
@@ -49,66 +97,72 @@ function Header() {
         >
           <HiOutlineMenuAlt2 size={30} /> <p>Todos</p>
         </button>
+
         <nav>
           <ToggleCategories $show={showToggleCategories}>
             <button onClick={() => setShowToggleCategories(false)}>
               <IoClose size={22} />
             </button>
+
             <ul>
               <li>
-                <Link to={'/'}>Teste A</Link>
+                <Link to={'/'}>Categoria A</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste B</Link>
+                <Link to={'/'}>Categoria B</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste C</Link>
+                <Link to={'/'}>Categoria C</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste D</Link>
+                <Link to={'/'}>Categoria D</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste A</Link>
+                <Link to={'/'}>Categoria A</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste B</Link>
+                <Link to={'/'}>Categoria B</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste C</Link>
+                <Link to={'/'}>Categoria C</Link>
               </li>
               <li>
-                <Link to={'/'}>Teste D</Link>
+                <Link to={'/'}>Categoria D</Link>
               </li>
             </ul>
           </ToggleCategories>
+
           <LockScreen $show={showToggleCategories}></LockScreen>
+
           <FixedCategories>
             <li>
-              <Link to={'/'}>Teste A</Link>
+              <Link to={'/'}>Categoria A</Link>
             </li>
             <li>
-              <Link to={'/'}>Teste B</Link>
+              <Link to={'/'}>Categoria B</Link>
             </li>
             <li>
-              <Link to={'/'}>Teste C</Link>
+              <Link to={'/'}>Categoria C</Link>
             </li>
             <li>
-              <Link to={'/'}>Teste D</Link>
+              <Link to={'/'}>Categoria D</Link>
             </li>
             <li>
-              <Link to={'/'}>Teste E</Link>
+              <Link to={'/'}>Categoria E</Link>
             </li>
             <li>
-              <Link to={'/'}>Teste F</Link>
+              <Link to={'/'}>Categoria F</Link>
             </li>
           </FixedCategories>
         </nav>
       </Categories>
+
       <Logo>
         <Link to="/">
           <img src={logo} alt="Logo da Camel" />
         </Link>
       </Logo>
+
       <UserButton>
         <button
           onClick={() => {
@@ -118,31 +172,37 @@ function Header() {
         >
           <FaUser size={24} />
         </button>
+
         <UserArea $show={showUserArea}>
           <div></div>
-          <ul>
-            <li>
-              <Link>
-                <PiUserList size={22} />
-                <p>Meu Perfil</p>
-              </Link>
-            </li>
-            <li>
-              <Link>
-                <TiShoppingCart size={22} />
-                <p>Meu Carrinho</p>
-              </Link>
-            </li>
-            <li>
-              <Link>
-                <IoExit size={22} />
-                <p>Sair da Conta</p>
-              </Link>
-            </li>
-          </ul>
-          <Button text="Entrar" />
+
+          {user && (
+            <ul>
+              <li>
+                <Link to={'/profile'}>
+                  <PiUserList size={22} />
+                  <p>Meu Perfil</p>
+                </Link>
+              </li>
+              <li>
+                <Link>
+                  <TiShoppingCart size={22} />
+                  <p>Meu Carrinho</p>
+                </Link>
+              </li>
+              <li>
+                <Link onClick={handleSignOut}>
+                  <IoExit size={22} />
+                  <p>Sair da Conta</p>
+                </Link>
+              </li>
+            </ul>
+          )}
+
+          {!user && <Button onClick={handleSignIn} text="Entrar" />}
         </UserArea>
       </UserButton>
+
       <SearchBar>
         <input type="search" placeholder="Procure na Camel" />
         <IoMdSearch size={18} />

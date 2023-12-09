@@ -1,7 +1,7 @@
 import { Container } from './styles'
 
-function Button({ text }) {
-  return <Container>{text}</Container>
+const Button = ({ text, ...rest }) => {
+  return <Container {...rest}>{text}</Container>
 }
 
 export default Button

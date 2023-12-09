@@ -27,7 +27,7 @@ export const InfoArea = styled.div`
   }
 `
 
-export const Fildset = styled.div`
+export const Fieldset = styled.div`
   display: flex;
   flex-direction: column;
 

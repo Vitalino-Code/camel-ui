@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-import { Wrapper } from './styles'
-
 import { AiFillEye } from 'react-icons/ai'
 import { BsEyeSlashFill } from 'react-icons/bs'
 
-function Input({
+import { Wrapper } from './styles'
+
+const Input = ({
   type,
   name,
   id,
@@ -14,7 +14,7 @@ function Input({
   required,
   handleChange,
   icon: Icon,
-}) {
+}) => {
   const [inputPasswordType, setInputPasswordType] = useState('')
 
   function changeVisibility() {

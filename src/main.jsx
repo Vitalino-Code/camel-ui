@@ -1,26 +1,38 @@
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
-import GlobalStyles from './styles/global'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+
 import theme from './styles/theme'
+import GlobalStyles from './styles/global'
 import { ThemeProvider } from 'styled-components'
 
-import { AuthProvider } from './contexts/authContext'
+import { AuthProvider } from './contexts/AuthContext'
 
 import { RoutesManager } from './routes'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
-  <Router>
+  <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <ToastContainer theme="dark" />
       <GlobalStyles />
       <AuthProvider>
         <RoutesManager />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </AuthProvider>
     </ThemeProvider>
-  </Router>,
+  </React.StrictMode>,
 )

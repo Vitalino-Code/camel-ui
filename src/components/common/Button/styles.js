@@ -15,4 +15,10 @@ export const Container = styled.button`
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   font-weight: 700;
+
+  &:disabled {
+    opacity: 0.5;
+    filter: none;
+    cursor: wait;
+  }
 `

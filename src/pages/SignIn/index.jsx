@@ -1,41 +1,66 @@
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { Link, useNavigate } from 'react-router-dom'
 
-import AuthLayout from '../../components/layout/authLayout'
 import Input from '../../components/forms/Input'
 import Button from '../../components/common/Button'
+import AuthLayout from '../../components/layout/authLayout'
 
-import logo from '../../assets/images/logo.png'
 import { LuMail } from 'react-icons/lu'
 import { BiLock } from 'react-icons/bi'
 import { FaGoogle } from 'react-icons/fa6'
 import { FaFacebook } from 'react-icons/fa'
 
-import { Fildset, InfoArea } from './styles'
-import { useSession } from '../../hooks/auth/useSession'
+import logo from '../../assets/images/logo.png'
 
-function Login() {
+import { Fieldset, InfoArea } from './styles'
+
+import { useSignIn } from '../../hooks/auth/useSignIn'
+
+const SignIn = () => {
+  const navigate = useNavigate()
+
   const [user, setUser] = useState({})
-  const { createSession } = useSession()
 
-  const handleChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value })
+  const { signIn, isLoading } = useSignIn()
+
+  const handleError = error => {
+    if (error) {
+      if (error.response) {
+        return toast.error(error.response.data.message)
+      } else {
+        return toast.error('Não foi possível entrar na sua conta.')
+      }
+    }
   }
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    createSession(user)
+  const handleSuccess = () => {
+    toast.success('Seja bem-vindo(a)! 🥳')
+
+    navigate('/')
   }
+
+  const handleInputChange = event => {
+    setUser({ ...user, [event.target.name]: event.target.value })
+  }
+
+  const handleSignIn = async event => {
+    event.preventDefault()
+    await signIn(user, handleSuccess, handleError)
+  }
+
   return (
     <AuthLayout>
       <InfoArea>
         <Link to={'/'}>
           <img src={logo} alt="logo" />
         </Link>
+
         <h1>Faça seu login na plataforma</h1>
       </InfoArea>
-      <Fildset>
-        <form onSubmit={handleSubmit}>
+
+      <Fieldset>
+        <form onSubmit={handleSignIn}>
           <div>
             <Input
               type="email"
@@ -45,8 +70,9 @@ function Login() {
               autoComplete="off"
               icon={LuMail}
               required
-              handleChange={handleChange}
+              handleChange={handleInputChange}
             />
+
             <Input
               type="password"
               name="password"
@@ -54,15 +80,19 @@ function Login() {
               placeholder="Sua senha"
               icon={BiLock}
               required
-              handleChange={handleChange}
+              handleChange={handleInputChange}
             />
+
             <Link to={'/'}>Esqueci minha senha</Link>
           </div>
-          <Button text="Entrar" />
+
+          <Button text="Cadastrar" disabled={isLoading} />
         </form>
+
         <p>
-          Não tem uma conta? <Link to={'/register'}>Registre-se</Link>
+          Não tem uma conta? <Link to={'/signup'}>Registre-se</Link>
         </p>
+
         <div>
           Ou entre com{' '}
           <Link to={'/'}>
@@ -72,9 +102,9 @@ function Login() {
             <FaFacebook />
           </Link>
         </div>
-      </Fildset>
+      </Fieldset>
     </AuthLayout>
   )
 }
 
-export default Login
+export { SignIn }
