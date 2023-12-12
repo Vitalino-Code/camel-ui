@@ -1,4 +1,4 @@
-name: CI - AULA
+name: CI
 
 on:
   push:
