@@ -24,7 +24,11 @@ const UserManagement = () => {
   const [selectedUser, setSelectedUser] = useState({})
 
   useEffect(() => {
-    api
+    refreshUsers()
+  }, [])
+
+  async function refreshUsers() {
+    await api
       .get('/users')
       .then(resp => {
         setUsers(resp.data)
@@ -33,7 +37,7 @@ const UserManagement = () => {
         //eslint-disable-next-line
         console.log(error)
       })
-  }, [])
+  }
 
   function getData() {
     if (users.length === 0) {
@@ -89,6 +93,7 @@ const UserManagement = () => {
         setDisplayDelete(false)
         setLockDisplay(false)
         toast.success('Usuário Excluido com sucesso')
+        refreshUsers()
       })
       .catch(toast.error('Falha na exclusão'))
   }
