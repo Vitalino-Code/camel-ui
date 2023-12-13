@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom'
 import Header from '../../components/common/header'
+
+import { Management } from './styles'
 
 const Home = () => {
   return (
@@ -14,6 +17,9 @@ const Home = () => {
         }}
       >
         🚧 Página em Desenvolvimento... 🚧
+        <Management>
+          <Link to={'/user-management'}>Gerenciamento de usuários</Link>
+        </Management>
       </p>
     </>
   )
