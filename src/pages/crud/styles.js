@@ -24,7 +24,7 @@ export const Options = styled.div`
 
 export const Span = styled.div`
   position: fixed;
-  top: calc((100vh / 2) - ${props => (props.$size ? '55px' : '220px')});
+  top: calc((100vh / 2) - ${props => (props.$size ? '55px' : '150px')});
   right: calc((100vw / 2) - 200px);
   display: flex;
   flex-direction: column;
