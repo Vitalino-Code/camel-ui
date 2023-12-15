@@ -21,9 +21,6 @@ const Home = () => {
           <Link to={'/user-management'}>Gerenciamento de usuários</Link>
         </Management>
       </p>
-      <Management>
-        <Link to={'/user-management'}>Gerenciamento de usuários</Link>
-      </Management>
     </>
   )
 }
