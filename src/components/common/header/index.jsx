@@ -28,7 +28,7 @@ import {
 
 import { useSignOut } from '../../../hooks/auth/useSignOut'
 
-import { useAuth } from '../../../contexts/AuthContext'
+import { useAuth } from '../../../contexts/authContext'
 
 const Header = () => {
   const navigate = useNavigate()
