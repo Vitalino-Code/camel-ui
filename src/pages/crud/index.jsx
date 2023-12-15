@@ -120,6 +120,7 @@ const UserManagement = () => {
         setDisplayEdit(false)
         setLockDisplay(false)
         toast.success('Usuário atualizado com sucesso')
+        refreshUsers()
       })
 
       .catch(() => {

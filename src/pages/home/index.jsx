@@ -17,9 +17,6 @@ const Home = () => {
         }}
       >
         🚧 Página em Desenvolvimento... 🚧
-        <Management>
-          <Link to={'/user-management'}>Gerenciamento de usuários</Link>
-        </Management>
       </p>
       <Management>
         <Link to={'/user-management'}>Gerenciamento de usuários</Link>
