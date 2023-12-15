@@ -8,7 +8,7 @@ import theme from './styles/theme'
 import GlobalStyles from './styles/global'
 import { ThemeProvider } from 'styled-components'
 
-import { AuthProvider } from './contexts/AuthContext'
+import { AuthProvider } from './contexts/authContext'
 
 import { RoutesManager } from './routes'
 
