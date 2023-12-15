@@ -95,7 +95,9 @@ const UserManagement = () => {
         toast.success('Usuário Excluido com sucesso')
         refreshUsers()
       })
-      .catch(toast.error('Falha na exclusão'))
+      .catch(() => {
+        toast.error('Falha na exclusão')
+      })
   }
 
   const handleInputChange = event => {
@@ -112,14 +114,13 @@ const UserManagement = () => {
       .put(`/users/${selectedUser.id}`, {
         name: selectedUser.name,
         email: selectedUser.email,
-        password: selectedUser.password,
-        confirmedPassword: selectedUser.confirmedPassword,
       })
       .then(() => {
         setSelectedUser({})
         setDisplayEdit(false)
         setLockDisplay(false)
         toast.success('Usuário atualizado com sucesso')
+        refreshUsers()
       })
 
       .catch(() => {
@@ -210,26 +211,6 @@ const UserManagement = () => {
               icon={LuMail}
               handleChange={handleInputChange}
               value={selectedUser.email}
-            />
-
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Sua senha"
-              required
-              handleChange={handleInputChange}
-              value={selectedUser.password}
-            />
-
-            <Input
-              type="password"
-              name="confirmedPassword"
-              id="confirmedPassword"
-              placeholder="Confirme sua senha"
-              required
-              handleChange={handleInputChange}
-              value={selectedUser.confirmedPassword}
             />
 
             <Button text="Atualizar" type="submit" />

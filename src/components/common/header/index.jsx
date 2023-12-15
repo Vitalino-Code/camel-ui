@@ -106,52 +106,52 @@ const Header = () => {
 
             <ul>
               <li>
-                <Link to={'/'}>Categoria A</Link>
+                <Link to={'/'}>Fios e Cabos</Link>
               </li>
               <li>
-                <Link to={'/'}>Categoria B</Link>
+                <Link to={'/'}>Iluminação</Link>
               </li>
               <li>
-                <Link to={'/'}>Categoria C</Link>
+                <Link to={'/'}>Segurança</Link>
               </li>
               <li>
-                <Link to={'/'}>Categoria D</Link>
+                <Link to={'/'}>Tomadas e Interruptores</Link>
               </li>
               <li>
-                <Link to={'/'}>Categoria A</Link>
+                <Link to={'/'}>Tubos e Conexões</Link>
               </li>
               <li>
-                <Link to={'/'}>Categoria B</Link>
+                <Link to={'/'}>Ferramentas e Ferragens</Link>
               </li>
               <li>
-                <Link to={'/'}>Categoria C</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Categoria D</Link>
+                <Link to={'/'}>Disjuntores</Link>
               </li>
             </ul>
           </ToggleCategories>
 
-          <LockScreen $show={showToggleCategories}></LockScreen>
+          <LockScreen
+            $show={showToggleCategories}
+            onClick={() => setShowToggleCategories(false)}
+          ></LockScreen>
 
           <FixedCategories>
             <li>
-              <Link to={'/'}>Categoria A</Link>
+              <Link to={'/'}>Fios e Cabos</Link>
             </li>
             <li>
-              <Link to={'/'}>Categoria B</Link>
+              <Link to={'/'}>Iluminação</Link>
             </li>
             <li>
-              <Link to={'/'}>Categoria C</Link>
+              <Link to={'/'}>Segurança</Link>
             </li>
             <li>
-              <Link to={'/'}>Categoria D</Link>
+              <Link to={'/'}>Tomadas e Interruptores</Link>
             </li>
             <li>
-              <Link to={'/'}>Categoria E</Link>
+              <Link to={'/'}>Tubos e Conexões</Link>
             </li>
             <li>
-              <Link to={'/'}>Categoria F</Link>
+              <Link to={'/'}>Ferramentas e Ferragens</Link>
             </li>
           </FixedCategories>
         </nav>
