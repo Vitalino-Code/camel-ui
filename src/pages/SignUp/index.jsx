@@ -42,7 +42,7 @@ const SignUp = () => {
 
     toast.success('Sua conta foi criada com sucesso!')
 
-    navigate('/')
+    navigate('/signin')
   }
 
   const handleInputChange = event => {
@@ -71,6 +71,7 @@ const SignUp = () => {
                 required
                 icon={BiUser}
                 handleChange={handleInputChange}
+                value={user.name}
               />
 
               <Input
@@ -82,6 +83,7 @@ const SignUp = () => {
                 required
                 icon={LuMail}
                 handleChange={handleInputChange}
+                value={user.email}
               />
 
               <Input
@@ -92,6 +94,7 @@ const SignUp = () => {
                 icon={BiLock}
                 required
                 handleChange={handleInputChange}
+                value={user.password}
               />
 
               <Input
@@ -102,6 +105,7 @@ const SignUp = () => {
                 icon={BiLock}
                 required
                 handleChange={handleInputChange}
+                value={user.confirmedPassword}
               />
             </div>
 

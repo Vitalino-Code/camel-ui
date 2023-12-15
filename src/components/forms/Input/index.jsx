@@ -14,6 +14,7 @@ const Input = ({
   required,
   handleChange,
   icon: Icon,
+  value,
 }) => {
   const [inputPasswordType, setInputPasswordType] = useState('')
 
@@ -35,6 +36,7 @@ const Input = ({
           autoComplete={autoComplete}
           required={required}
           onChange={handleChange}
+          value={value || ''}
         />
         {name === 'password' || name === 'confirmedPassword' ? (
           <button type="button" onClick={() => changeVisibility()}>

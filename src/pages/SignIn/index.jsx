@@ -71,6 +71,7 @@ const SignIn = () => {
               icon={LuMail}
               required
               handleChange={handleInputChange}
+              value={user.email}
             />
 
             <Input
@@ -81,6 +82,7 @@ const SignIn = () => {
               icon={BiLock}
               required
               handleChange={handleInputChange}
+              value={user.password}
             />
 
             <Link to={'/'}>Esqueci minha senha</Link>
