@@ -88,7 +88,7 @@ const SignIn = () => {
             <Link to={'/'}>Esqueci minha senha</Link>
           </div>
 
-          <Button text="Cadastrar" disabled={isLoading} />
+          <Button text="Entrar" disabled={isLoading} />
         </form>
 
         <p>
