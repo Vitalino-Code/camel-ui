@@ -52,7 +52,7 @@ export default defineConfig({
         theme_color: '#f08605',
         background_color: '#2d3143',
         display: 'standalone',
-        start_url: '/sign',
+        start_url: '/signin',
         orientation: 'portrait',
         screenshots: [
           {
