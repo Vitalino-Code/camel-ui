@@ -92,7 +92,7 @@ const SignIn = () => {
         </form>
 
         <p>
-          Não tem uma conta? <Link to={'/signup'}>Registre-se</Link>
+          Não tem uma conta? <Link to={'/cadastro'}>Registre-se</Link>
         </p>
 
         <div>

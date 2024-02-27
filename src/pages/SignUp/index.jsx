@@ -42,7 +42,7 @@ const SignUp = () => {
 
     toast.success('Sua conta foi criada com sucesso!')
 
-    navigate('/signin')
+    navigate('/login')
   }
 
   const handleInputChange = event => {

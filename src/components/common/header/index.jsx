@@ -71,7 +71,7 @@ const Header = () => {
   }
 
   const handleSignIn = () => {
-    navigate('/signin')
+    navigate('/login')
   }
 
   useEffect(() => {
