@@ -1,16 +1,12 @@
 describe('Página de Login', () => {
-  it('Clicar em detalhes de usuário, clicar em entrar, inserir email e senha', () => {
-    cy.visit('http://127.0.0.1:5173/')
+  it('Should login successfully', () => {
+    cy.visit('http://localhost:5173/signin')
     // cy.wait(1500)
-    cy.get('#email').type('ricardo')
+    cy.get('#email').type('elias@email.com')
     // cy.wait(1500)
-    cy.get('#password').type('123')
+    cy.get('#password').type('elias123')
     // cy.wait(1500)
-    cy.contains('Cadastrar').click()
+    cy.contains('Entrar').click()
     // cy.wait(3000)
-
-    cy.get('#email').type('@vitalino.com')
-    // cy.wait(1500)
-    cy.contains('Cadastrar').click()
   })
 })
