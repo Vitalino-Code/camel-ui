@@ -33,7 +33,13 @@ import { useAuth } from '../../../contexts/authContext'
 const Header = () => {
   const navigate = useNavigate()
 
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([
+    { id: '001', name: 'Fios e Cabos' },
+    { id: '002', name: 'Iluminação' },
+    { id: '003', name: 'Segurança' },
+    { id: '004', name: 'Tomadas e interruptores' },
+    { id: '005', name: 'Tubos e Conexões' },
+  ])
 
   const [showUserArea, setShowUserArea] = useState(false)
   const [showToggleCategories, setShowToggleCategories] = useState(false)
