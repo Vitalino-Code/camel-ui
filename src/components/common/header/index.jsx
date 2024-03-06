@@ -43,7 +43,6 @@ const Header = () => {
   const fetchCategories = useFetchCategories().fetchCategories
   useEffect(() => {
     fetchCategories(setCategories)
-    // eslint-disable-next-line
   }, [setCategories])
 
   const handleError = error => {
