@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import { useFetchCategories } from '../../../hooks/dataFetching/useFetchCategories'
 import Button from '../Button'
 
 import { FaUser } from 'react-icons/fa'
@@ -33,12 +33,18 @@ import { useAuth } from '../../../contexts/authContext'
 const Header = () => {
   const navigate = useNavigate()
 
+  const [categories, setCategories] = useState([])
+
   const [showUserArea, setShowUserArea] = useState(false)
   const [showToggleCategories, setShowToggleCategories] = useState(false)
-
   const { signOut } = useSignOut()
-
   const { user } = useAuth()
+
+  const fetchCategories = useFetchCategories().fetchCategories
+  useEffect(() => {
+    fetchCategories(setCategories)
+    // eslint-disable-next-line
+  }, [setCategories])
 
   const handleError = error => {
     if (error) {
@@ -105,27 +111,11 @@ const Header = () => {
             </button>
 
             <ul>
-              <li>
-                <Link to={'/'}>Fios e Cabos</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Iluminação</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Segurança</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Tomadas e Interruptores</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Tubos e Conexões</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Ferramentas e Ferragens</Link>
-              </li>
-              <li>
-                <Link to={'/'}>Disjuntores</Link>
-              </li>
+              {categories.map(category => (
+                <li key={category.id}>
+                  <Link to={`/categorias/${category.id}`}>{category.name}</Link>
+                </li>
+              ))}
             </ul>
           </ToggleCategories>
 
@@ -135,24 +125,11 @@ const Header = () => {
           ></LockScreen>
 
           <FixedCategories>
-            <li>
-              <Link to={'/'}>Fios e Cabos</Link>
-            </li>
-            <li>
-              <Link to={'/'}>Iluminação</Link>
-            </li>
-            <li>
-              <Link to={'/'}>Segurança</Link>
-            </li>
-            <li>
-              <Link to={'/'}>Tomadas e Interruptores</Link>
-            </li>
-            <li>
-              <Link to={'/'}>Tubos e Conexões</Link>
-            </li>
-            <li>
-              <Link to={'/'}>Ferramentas e Ferragens</Link>
-            </li>
+            {categories.slice(0, 6).map(category => (
+              <li key={category.id}>
+                <Link to={`/categorias/${category.id}`}>{category.name}</Link>
+              </li>
+            ))}
           </FixedCategories>
         </nav>
       </Categories>
