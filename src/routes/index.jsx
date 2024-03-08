@@ -4,6 +4,7 @@ import Home from '../pages/home'
 import { SignIn } from '../pages/SignIn'
 import { SignUp } from '../pages/SignUp'
 import { Product } from '../pages/product'
+import { ShoppingCart } from '../pages/shoppingCart'
 import { UserManagement } from '../pages/crud/index'
 
 export const RoutesManager = () => {
@@ -15,6 +16,7 @@ export const RoutesManager = () => {
           <Route path="/login" element={<SignIn />} />
           <Route path="/cadastro" element={<SignUp />} />
           <Route path="/produto/:id" element={<Product />} />
+          <Route path="/carrinho" element={<ShoppingCart />} />
           <Route path="/user-management" element={<UserManagement />} />
         </Routes>
       </BrowserRouter>
