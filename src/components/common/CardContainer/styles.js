@@ -19,6 +19,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
   color: ${({ theme }) => theme.COLORS.BLACK};
   padding: 10px;
+  font-size: 2.8rem;
 `
 export const ProductContainer = styled.div`
   justify-content: center;

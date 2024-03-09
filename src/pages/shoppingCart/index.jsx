@@ -15,6 +15,10 @@ import {
   Total,
 } from './styles'
 
+import img1 from '../../assets/images/img1.jpg'
+import img2 from '../../assets/images/img2.jpg'
+import img3 from '../../assets/images/img3.jpg'
+
 const itens = [
   {
     id: '001',
@@ -23,7 +27,7 @@ const itens = [
     description: 'Descrição do produto 1',
     available: true,
     brand: 'XYZ',
-    image: 'src/assets/images/img1.jpg',
+    image: img1,
   },
   {
     id: '002',
@@ -32,8 +36,7 @@ const itens = [
     description: 'Descrição do produto 2',
     available: false,
     brand: 'ABC',
-    image: 'src/assets/images/img2.jpg',
-    quantity: 2,
+    image: img2,
   },
   {
     id: '003',
@@ -42,7 +45,7 @@ const itens = [
     description: 'Descrição do produto 3',
     available: true,
     brand: 'JKL',
-    image: 'src/assets/images/img3.jpg',
+    image: img3,
   },
 ]
 
