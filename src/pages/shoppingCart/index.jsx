@@ -19,37 +19,38 @@ import img1 from '../../assets/images/img1.jpg'
 import img2 from '../../assets/images/img2.jpg'
 import img3 from '../../assets/images/img3.jpg'
 
-const itens = [
-  {
-    id: '001',
-    name: 'Produto 01',
-    price: '9.99',
-    description: 'Descrição do produto 1',
-    available: true,
-    brand: 'XYZ',
-    image: img1,
-  },
-  {
-    id: '002',
-    name: 'Produto 02',
-    price: '935.99',
-    description: 'Descrição do produto 2',
-    available: false,
-    brand: 'ABC',
-    image: img2,
-  },
-  {
-    id: '003',
-    name: 'Produto 03',
-    price: '29.58',
-    description: 'Descrição do produto 3',
-    available: true,
-    brand: 'JKL',
-    image: img3,
-  },
-]
+// const itens = [
+//   {
+//     id: '001',
+//     name: 'Produto 01',
+//     price: '9.99',
+//     description: 'Descrição do produto 1',
+//     available: true,
+//     brand: 'XYZ',
+//     image: 'src/assets/images/img1.jpg',
+//   },
+//   {
+//     id: '002',
+//     name: 'Produto 02',
+//     price: '935.99',
+//     description: 'Descrição do produto 2',
+//     available: false,
+//     brand: 'ABC',
+//     image: 'src/assets/images/img2.jpg',
+//     quantity: 2,
+//   },
+//   {
+//     id: '003',
+//     name: 'Produto 03',
+//     price: '29.58',
+//     description: 'Descrição do produto 3',
+//     available: true,
+//     brand: 'JKL',
+//     image: 'src/assets/images/img3.jpg',
+//   },
+// ]
 
-localStorage.setItem('Carrinho', JSON.stringify(itens))
+// localStorage.setItem('cart', JSON.stringify(itens))
 
 const ShoppingCart = () => {
   const [products, setProducts] = useState([])
@@ -58,7 +59,7 @@ const ShoppingCart = () => {
   //Performs the first load of data from localStorage
   useEffect(() => {
     if (firstRun) {
-      let updatedProducts = JSON.parse(localStorage.getItem('Carrinho'))
+      let updatedProducts = JSON.parse(localStorage.getItem('cart'))
       updatedProducts = updatedProducts.map(product => {
         return {
           ...product,
@@ -74,13 +75,13 @@ const ShoppingCart = () => {
   //reset the shopping cart
   const resetCart = () => {
     setProducts([])
-    localStorage.removeItem('Carrinho')
+    localStorage.removeItem('cart')
   }
 
   //Update the product list
   const refreshProductsList = updatedProducts => {
     setProducts(updatedProducts)
-    localStorage.setItem('Carrinho', updatedProducts)
+    localStorage.setItem('cart', JSON.stringify(updatedProducts))
   }
 
   //Deletes a product from the list using its ID

@@ -59,6 +59,11 @@ const CartItem = ({
               <option value="7">7</option>
               <option value="8">8</option>
               <option value="9">9</option>
+              {product.quantity > 9 ? (
+                <option value={product.quantity}>{product.quantity}</option>
+              ) : (
+                ''
+              )}
             </select>
             <span>|</span>
             <button onClick={() => handleDelete(product.id)}>
