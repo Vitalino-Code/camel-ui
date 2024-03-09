@@ -39,7 +39,6 @@ import {
 //     image: 'src/assets/images/img2.jpg',
 //     quantity: 2,
 //   },
-//
 //   {
 //     id: '003',
 //     name: 'Produto 03',
