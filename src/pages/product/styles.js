@@ -137,15 +137,14 @@ export const SelectionArea = styled.div`
 
   div {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  form {
-    display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+
+    div {
+      display: flex;
+      flex-direction: row;
+    }
 
     label {
       font-size: 1.4rem;
