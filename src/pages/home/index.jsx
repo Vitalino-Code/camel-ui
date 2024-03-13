@@ -3,6 +3,7 @@ import FooterComponent from '../../components/common/footer/index.jsx'
 import { ProductCard } from '../../components/common/Card/index.jsx'
 import { products } from '../../mock/produtos.js'
 import { CardContainer } from '../../components/common/CardContainer/index.jsx'
+import Brands from '../../components/common/brands/index.jsx'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
           />
         ))}
       </CardContainer>
+      <Brands />
       <FooterComponent />
     </>
   )
