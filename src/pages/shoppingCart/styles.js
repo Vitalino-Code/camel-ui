@@ -4,17 +4,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column !important;
 
-  margin: 7rem 1rem;
   padding: 3.2rem 1rem;
   border-radius: 0.8rem;
 
   color: black;
   background-color: white;
-
-  @media (min-width: 768px) {
-    max-width: 77rem;
-    margin: 7rem auto;
-  }
 
   h1 {
     font-size: 2.8rem;

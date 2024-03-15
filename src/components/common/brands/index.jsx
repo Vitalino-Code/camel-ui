@@ -67,23 +67,23 @@ const Brands = () => {
       <SwiperContainer>
         <Swiper
           modules={[Navigation, Pagination]}
-          slidesPerView={data.length < 3 ? data.length : 5}
+          slidesPerView={data.length < 3 ? data.length : 1}
           breakpoints={{
-            320: {
-              slidesPerView: 1,
+            400: {
+              slidesPerView: 2,
               spaceBetween: 10,
             },
-            768: {
-              slidesPerView: 2,
+            575: {
+              slidesPerView: 3,
               spaceBetween: 20,
             },
-            1024: {
+            768: {
               slidesPerView: 4,
-              spaceBetween: 40,
+              spaceBetween: 35,
             },
-            1440: {
+            1024: {
               slidesPerView: 5,
-              spaceBetween: 50,
+              spaceBetween: 25,
             },
           }}
           navigation={data.length >= 3}

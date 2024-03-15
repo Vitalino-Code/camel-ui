@@ -38,7 +38,7 @@ const Header = () => {
     { id: '002', name: 'Iluminação' },
     { id: '003', name: 'Segurança' },
     { id: '004', name: 'Tomadas e interruptores' },
-    { id: '005', name: 'Tubos e Conexões' },
+    // { id: '005', name: 'Tubos e Conexões' },
   ])
 
   const [showUserArea, setShowUserArea] = useState(false)

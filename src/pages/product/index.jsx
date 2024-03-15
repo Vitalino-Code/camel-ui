@@ -2,19 +2,12 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { MainLayout } from '../../components/layout/mainLayout/index.jsx'
 import { priceFormatter } from '../../utils'
 import { useFetchProductById } from '../../hooks/dataFetching/useFetchProductByID'
 import { Carousel } from '../../components/common/carousel'
-import Header from '../../components/common/header'
 
-import {
-  Body,
-  InfoArea,
-  ProdArea,
-  ProdName,
-  SelectionArea,
-  Slides,
-} from './styles'
+import { InfoArea, ProdArea, ProdName, SelectionArea, Slides } from './styles'
 
 //Mock images
 const imgBaseUrl = '../src/assets/images'
@@ -86,8 +79,7 @@ const Product = () => {
 
   return (
     <>
-      <Header />
-      <Body>
+      <MainLayout>
         <ProdArea>
           <ProdName>
             <h1>{item.name}</h1>
@@ -127,7 +119,7 @@ const Product = () => {
             </div>
           </SelectionArea>
         </ProdArea>
-      </Body>
+      </MainLayout>
     </>
   )
 }
