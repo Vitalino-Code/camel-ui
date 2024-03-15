@@ -29,4 +29,20 @@ export const ProductContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   max-width: 100%;
+
+  @media (min-width: 320px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 425px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `
