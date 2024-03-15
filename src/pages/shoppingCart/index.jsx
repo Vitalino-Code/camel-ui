@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../../components/common/header'
+import { useEffect, useState } from 'react'
+
 import { CartItem } from '../../components/common/cartItem'
+import { MainLayout } from '../../components/layout/mainLayout'
 import { priceFormatter } from '../../utils'
 
 import { FaTrashAlt } from 'react-icons/fa'
@@ -121,42 +122,43 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <Header />
-      <Container>
-        <h1>Carrinho de Compras</h1>
-        {products.length !== 0 ? (
-          <div>
-            <ProductList>
-              {products.map(product => (
-                <li key={product.id}>
-                  <CartItem
-                    product={product}
-                    handleDelete={deleteProduct}
-                    handleChangeQuantity={handleQuantityChange}
-                    handleCheckChange={handleCheckChange}
-                  />
-                </li>
-              ))}
-            </ProductList>
+      <MainLayout>
+        <Container>
+          <h1>Carrinho de Compras</h1>
+          {products.length !== 0 ? (
+            <div>
+              <ProductList>
+                {products.map(product => (
+                  <li key={product.id}>
+                    <CartItem
+                      product={product}
+                      handleDelete={deleteProduct}
+                      handleChangeQuantity={handleQuantityChange}
+                      handleCheckChange={handleCheckChange}
+                    />
+                  </li>
+                ))}
+              </ProductList>
 
-            <DeleteAllButton onClick={resetCart}>
-              Esvaziar Carrinho <FaTrashAlt />
-            </DeleteAllButton>
-            <Total>
-              Total: <span>{priceFormatter(getTotal(), 'BRL')}</span>
-            </Total>
-            <Budget>Gerar Orçamento</Budget>
-          </div>
-        ) : (
-          <EmptyCart>
-            <h3>Seu carrinho está vazio</h3>
-            <p>
-              Vá para a <Link to={'/'}>página inicial</Link>, e adicione
-              produtos ao seu carrinho.
-            </p>
-          </EmptyCart>
-        )}
-      </Container>
+              <DeleteAllButton onClick={resetCart}>
+                Esvaziar Carrinho <FaTrashAlt />
+              </DeleteAllButton>
+              <Total>
+                Total: <span>{priceFormatter(getTotal(), 'BRL')}</span>
+              </Total>
+              <Budget>Gerar Orçamento</Budget>
+            </div>
+          ) : (
+            <EmptyCart>
+              <h3>Seu carrinho está vazio</h3>
+              <p>
+                Vá para a <Link to={'/'}>página inicial</Link>, e adicione
+                produtos ao seu carrinho.
+              </p>
+            </EmptyCart>
+          )}
+        </Container>
+      </MainLayout>
     </>
   )
 }

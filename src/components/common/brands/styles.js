@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   color: ${({ theme }) => theme.COLORS.BLACK};
-  width: 75%;
+  width: 100%;
   padding: 2.4rem;
   border-radius: 1rem;
   text-align: center;
@@ -23,6 +23,12 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 
   .swiper-slide img {

@@ -1,15 +1,5 @@
 import styled from 'styled-components'
 
-export const Body = styled.div`
-  margin: 7rem 1rem;
-  background-color: ${({ theme }) => theme.COLORS.BODY_BG};
-
-  @media (min-width: 1024px) {
-    max-width: 960px;
-    margin: 7rem auto;
-  }
-`
-
 export const ProdArea = styled.div`
   font-size: 1.4rem;
 
