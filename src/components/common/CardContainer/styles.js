@@ -19,10 +19,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
   color: ${({ theme }) => theme.COLORS.BLACK};
   padding: 10px;
-<<<<<<< HEAD
-=======
   font-size: 2.8rem;
->>>>>>> 9148d84e5d48c5bbc211db5c728c12a36a24ff82
 `
 export const ProductContainer = styled.div`
   justify-content: center;
@@ -32,10 +29,20 @@ export const ProductContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   max-width: 100%;
-<<<<<<< HEAD
-  @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+
+  @media (min-width: 320px) {
+    grid-template-columns: repeat(1, 1fr);
   }
-=======
->>>>>>> 9148d84e5d48c5bbc211db5c728c12a36a24ff82
+
+  @media (min-width: 425px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `
