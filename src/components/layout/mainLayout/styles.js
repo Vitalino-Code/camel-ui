@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 1124px) {
-    max-width: 100rem;
+    max-width: ${props => props.$maxWidth || '100rem'};
     margin: 7rem auto;
   }
 `

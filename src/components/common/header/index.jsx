@@ -113,7 +113,7 @@ const Header = () => {
             <ul>
               {categories.map(category => (
                 <li key={category.id}>
-                  <Link to={`/categorias/${category.id}`}>{category.name}</Link>
+                  <Link to={`/categoria/${category.id}`}>{category.name}</Link>
                 </li>
               ))}
             </ul>
@@ -125,9 +125,9 @@ const Header = () => {
           ></LockScreen>
 
           <FixedCategories>
-            {categories.slice(0, 6).map(category => (
+            {categories.slice(0, 4).map(category => (
               <li key={category.id}>
-                <Link to={`/categorias/${category.id}`}>{category.name}</Link>
+                <Link to={`/categoria/${category.id}`}>{category.name}</Link>
               </li>
             ))}
           </FixedCategories>
@@ -162,7 +162,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to={'/carrinho'}>
                   <TiShoppingCart size={22} />
                   <p>Meu Carrinho</p>
                 </Link>
