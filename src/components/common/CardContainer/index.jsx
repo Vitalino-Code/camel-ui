@@ -1,8 +1,8 @@
 import { ProductContainer, Title, Container } from './styles'
-export const CardContainer = ({ children }) => {
+export const CardContainer = ({ title, children }) => {
   return (
     <Container>
-      <Title>Produtos em Destaque</Title>
+      <Title>{title}</Title>
       <ProductContainer>{children}</ProductContainer>
     </Container>
   )

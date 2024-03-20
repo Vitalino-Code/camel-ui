@@ -38,7 +38,7 @@ const Header = () => {
     { id: '002', name: 'Iluminação' },
     { id: '003', name: 'Segurança' },
     { id: '004', name: 'Tomadas e interruptores' },
-    // { id: '005', name: 'Tubos e Conexões' },
+    { id: '005', name: 'Tubos e Conexões' },
   ])
 
   const [showUserArea, setShowUserArea] = useState(false)
@@ -119,7 +119,7 @@ const Header = () => {
             <ul>
               {categories.map(category => (
                 <li key={category.id}>
-                  <Link to={`/categorias/${category.id}`}>{category.name}</Link>
+                  <Link to={`/categoria/${category.id}`}>{category.name}</Link>
                 </li>
               ))}
             </ul>
@@ -131,9 +131,9 @@ const Header = () => {
           ></LockScreen>
 
           <FixedCategories>
-            {categories.slice(0, 6).map(category => (
+            {categories.slice(0, 4).map(category => (
               <li key={category.id}>
-                <Link to={`/categorias/${category.id}`}>{category.name}</Link>
+                <Link to={`/categoria/${category.id}`}>{category.name}</Link>
               </li>
             ))}
           </FixedCategories>
@@ -168,7 +168,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to={'/carrinho'}>
                   <TiShoppingCart size={22} />
                   <p>Meu Carrinho</p>
                 </Link>
