@@ -1,5 +1,5 @@
 import Brands from '../../components/common/brands/index.jsx'
-
+import Categories from '../../components/common/categories/index.jsx'
 import { CardContainer } from '../../components/common/CardContainer/index.jsx'
 import { MainLayout } from '../../components/layout/mainLayout/index.jsx'
 import { ProductCard } from '../../components/common/Card/index.jsx'
@@ -9,6 +9,7 @@ const Home = () => {
   return (
     <>
       <MainLayout>
+        <Categories />
         <CardContainer>
           {products.map(product => (
             <ProductCard
