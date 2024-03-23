@@ -1,15 +1,16 @@
-import Brands from '../../components/common/brands/index.jsx'
-import Categories from '../../components/common/categories/index.jsx'
 import { CardContainer } from '../../components/common/CardContainer/index.jsx'
 import { MainLayout } from '../../components/layout/mainLayout/index.jsx'
 import { ProductCard } from '../../components/common/Card/index.jsx'
 import { products } from '../../mock/produtos.js'
+import { brands } from '../../mock/brands.js'
+import { categories } from '../../mock/categories.js'
+import SwiperSlider from '../../components/common/SwiperSlider/index.jsx'
 
 const Home = () => {
   return (
     <>
       <MainLayout>
-        <Categories />
+        <SwiperSlider slides={categories} />
         <CardContainer>
           {products.map(product => (
             <ProductCard
@@ -21,7 +22,7 @@ const Home = () => {
             />
           ))}
         </CardContainer>
-        <Brands />
+        <SwiperSlider slides={brands} />
       </MainLayout>
     </>
   )

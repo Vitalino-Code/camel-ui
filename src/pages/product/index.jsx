@@ -6,8 +6,9 @@ import { MainLayout } from '../../components/layout/mainLayout/index.jsx'
 import { priceFormatter } from '../../utils'
 import { useFetchProductById } from '../../hooks/dataFetching/useFetchProductByID'
 import { Carousel } from '../../components/common/carousel'
-
 import { InfoArea, ProdArea, ProdName, SelectionArea, Slides } from './styles'
+import { relatedProducts } from '../../mock/relatedProducts.js'
+import SwiperSlider from '../../components/common/SwiperSlider/index.jsx'
 
 //Mock images
 const imgBaseUrl = '../src/assets/images'
@@ -119,6 +120,7 @@ const Product = () => {
             </div>
           </SelectionArea>
         </ProdArea>
+        <SwiperSlider slides={relatedProducts} />
       </MainLayout>
     </>
   )

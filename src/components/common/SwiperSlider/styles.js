@@ -47,7 +47,6 @@ export const SwiperContainer = styled.ul`
     color: ${({ theme }) => theme.COLORS.BLACK};
     font-weight: 700;
     text-align: center;
-    height: 4rem;
     font-size: 1.6rem;
   }
 
@@ -56,5 +55,17 @@ export const SwiperContainer = styled.ul`
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .discount {
+    color: ${({ theme }) => theme.COLORS.BLACK};
+    font-weight: 700;
+    text-align: center;
+
+    font-size: 1.6rem;
+    text-decoration: line-through;
+  }
+  .price {
+    color: ${({ theme }) => theme.COLORS.ORANGE};
   }
 `
