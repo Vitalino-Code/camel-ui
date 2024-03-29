@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -7,7 +7,15 @@ import { priceFormatter } from '../../utils'
 import { useFetchProductById } from '../../hooks/dataFetching/useFetchProductByID'
 import { Carousel } from '../../components/common/carousel'
 
-import { InfoArea, ProdArea, ProdName, SelectionArea, Slides } from './styles'
+import {
+  InfoArea,
+  ProdArea,
+  ProdName,
+  SelectionArea,
+  Slides,
+  MoreInfoArea,
+  ArrowIcon,
+} from './styles'
 
 //Mock images
 const imgBaseUrl = '../src/assets/images'
@@ -23,8 +31,10 @@ const Product = () => {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(1)
   const [item, setItem] = useState({})
+  const [showMoreInfo, setShowMoreInfo] = useState(false)
   const { FetchProductById } = useFetchProductById()
   const navigate = useNavigate()
+  const moreInfoRef = useRef()
 
   //Manages the display of product display errors
   const handleError = error => {
@@ -77,6 +87,10 @@ const Product = () => {
     }
   }
 
+  const toggleMoreInfo = () => {
+    setShowMoreInfo(prevState => !prevState)
+  }
+
   return (
     <>
       <MainLayout>
@@ -90,7 +104,15 @@ const Product = () => {
           </Slides>
           <InfoArea>
             <p>{item.description}</p>
-            {/* <a>Mais informações</a> */}
+            <a
+              href="#moreInfo"
+              onClick={e => {
+                e.preventDefault()
+                moreInfoRef.current.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              Mais informações
+            </a>
             <hr />
           </InfoArea>
           <SelectionArea>
@@ -119,6 +141,13 @@ const Product = () => {
             </div>
           </SelectionArea>
         </ProdArea>
+        <MoreInfoArea id="moreInfo" ref={moreInfoRef}>
+          <button onClick={() => toggleMoreInfo(prevState => !prevState)}>
+            <ArrowIcon showMoreInfo={showMoreInfo} />
+            Informações do Produto
+          </button>
+          {showMoreInfo && <p>{item.description}</p>}
+        </MoreInfoArea>
       </MainLayout>
     </>
   )

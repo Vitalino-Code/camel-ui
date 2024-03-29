@@ -81,8 +81,10 @@ export const InfoArea = styled.div`
     font-weight: 600;
     text-decoration: underline;
     font-size: 1.2rem;
-    align-self: flex-start;
     color: ${({ theme }) => theme.COLORS.ORANGE};
+    margin: 0 auto; /* Centralizar horizontalmente */
+    max-width: 85%; /* Limitar a largura a 85% */
+    text-align: center; /* Centralizar o texto */
   }
 
   hr {
@@ -103,6 +105,7 @@ export const InfoArea = styled.div`
     a {
       width: 85%;
       margin: auto;
+      text-align: start;
     }
   }
 `
@@ -159,4 +162,49 @@ export const SelectionArea = styled.div`
   @media (min-width: 1024px) {
     grid-area: SelectionArea;
   }
+`
+export const MoreInfoArea = styled.div`
+  font-size: 1.4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 24px;
+
+  border-radius: 1rem;
+
+  width: 100%;
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
+
+  p {
+    color: black;
+    font-size: 16px;
+  }
+
+  button {
+    display: flex;
+    align-items: flex-start;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 40% 3fr;
+  }
+`
+export const ArrowIcon = styled.span`
+  display: flex;
+  align-items: center;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid black;
+  transition: transform 0.1s ease-in-out;
+  transform: ${({ showMoreInfo }) =>
+    showMoreInfo ? 'rotate(90deg)' : 'rotate(0deg)'};
+  margin-right: 5px;
+  box-sizing: border-box;
+  justify-content: center;
 `
