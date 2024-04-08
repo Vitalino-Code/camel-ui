@@ -1,6 +1,7 @@
 import { priceFormatter } from '../../../utils'
-
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+
 import {
   ProductContainer,
   ImageContainer,
@@ -9,13 +10,19 @@ import {
   ProductImage,
 } from './styles'
 
-export const ProductCard = ({ name, price, productImage, id }) => {
+export const ProductCard = ({ name, price, productImages, id }) => {
+  const [imageUrl] = useState(productImages[0]?.src)
+
   return (
     <div>
       <Link to={`/produto/${id}`}>
         <ProductContainer>
           <ImageContainer>
-            <ProductImage src={productImage} alt={name} />
+            {productImages[0] ? (
+              <ProductImage src={imageUrl} alt={name} />
+            ) : (
+              <ProductImage src="" alt={'imagem: ' + name} />
+            )}
           </ImageContainer>
 
           <ProductName>

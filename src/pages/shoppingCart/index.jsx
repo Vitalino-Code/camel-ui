@@ -16,60 +16,25 @@ import {
   Total,
 } from './styles'
 
-// import img1 from '../../assets/images/img1.jpg'
-// import img2 from '../../assets/images/img2.jpg'
-// import img3 from '../../assets/images/img3.jpg'
-
-// const itens = [
-//   {
-//     id: '001',
-//     name: 'Produto 01',
-//     price: '9.99',
-//     description: 'Descrição do produto 1',
-//     available: true,
-//     brand: 'XYZ',
-//     image: 'src/assets/images/img1.jpg',
-//   },
-//   {
-//     id: '002',
-//     name: 'Produto 02',
-//     price: '935.99',
-//     description: 'Descrição do produto 2',
-//     available: false,
-//     brand: 'ABC',
-//     image: 'src/assets/images/img2.jpg',
-//     quantity: 2,
-//   },
-//   {
-//     id: '003',
-//     name: 'Produto 03',
-//     price: '29.58',
-//     description: 'Descrição do produto 3',
-//     available: true,
-//     brand: 'JKL',
-//     image: 'src/assets/images/img3.jpg',
-//   },
-// ]
-
-// localStorage.setItem('cart', JSON.stringify(itens))
-
 const ShoppingCart = () => {
   const [products, setProducts] = useState([])
   const [firstRun, setFirstRun] = useState(true)
 
   //Performs the first load of data from localStorage
   useEffect(() => {
-    if (firstRun) {
-      let updatedProducts = JSON.parse(localStorage.getItem('cart'))
-      updatedProducts = updatedProducts.map(product => {
-        return {
-          ...product,
-          quantity: product.quantity ? product.quantity : 1,
-          check: product.check ? product.check : true,
-        }
-      })
-      setProducts(updatedProducts)
-      setFirstRun(false)
+    if (localStorage.getItem('cart')) {
+      if (firstRun) {
+        let updatedProducts = JSON.parse(localStorage.getItem('cart'))
+        updatedProducts = updatedProducts.map(product => {
+          return {
+            ...product,
+            quantity: product.quantity ? product.quantity : 1,
+            check: product.check ? product.check : true,
+          }
+        })
+        setProducts(updatedProducts)
+        setFirstRun(false)
+      }
     }
   }, [firstRun])
 
@@ -132,6 +97,7 @@ const ShoppingCart = () => {
                   <li key={product.id}>
                     <CartItem
                       product={product}
+                      productImages={product.images}
                       handleDelete={deleteProduct}
                       handleChangeQuantity={handleQuantityChange}
                       handleCheckChange={handleCheckChange}

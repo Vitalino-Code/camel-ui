@@ -10,13 +10,17 @@ import {
   Options,
   Price,
 } from './styles'
+import { useState } from 'react'
 
 const CartItem = ({
   product,
   handleDelete,
   handleChangeQuantity,
   handleCheckChange,
+  productImages,
 }) => {
+  const [imageUrl] = useState(productImages[0]?.src)
+
   return (
     <>
       <Container>
@@ -32,7 +36,11 @@ const CartItem = ({
             />
           </label>
         </div>
-        <Img src={product.image} alt="Produto" />
+        {productImages[0] ? (
+          <Img src={imageUrl} alt={name} />
+        ) : (
+          <Img src="" alt={'imagem: ' + product.name} />
+        )}
         <InfoContainer>
           <div>
             <Name>{product.name}</Name>
