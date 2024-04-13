@@ -5,6 +5,7 @@ const useFetchCategories = () => {
   const [error, setError] = useState(null)
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+
   const fetchCategories = async successCallback => {
     try {
       setIsLoading(true)

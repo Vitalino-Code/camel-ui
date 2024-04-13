@@ -4,6 +4,7 @@ import { MainLayout } from '../../components/layout/mainLayout'
 import { Container, Label, Subcategories, Subcategory } from './styles'
 import { useEffect, useState } from 'react'
 import { useFetchCategoryById } from '../../hooks/dataFetching/useFetchCategoryByID'
+import { useFetchSubcategories } from '../../hooks/dataFetching/useFecthSubcategories.js'
 import { CardContainer } from '../../components/common/CardContainer'
 import { ProductCard } from '../../components/common/Card'
 
@@ -13,6 +14,8 @@ const Category = () => {
   const { id } = useParams()
   const [category, setCategory] = useState({})
   const { FetchCategoryById } = useFetchCategoryById()
+  const { FetchSubcategories } = useFetchSubcategories()
+  const [subcategories, setSubcategories] = useState([])
   const [selectedSubcategory, setSelectedSubcategory] = useState('')
 
   const textFormatter = str => {
@@ -33,9 +36,13 @@ const Category = () => {
   }, [id])
 
   useEffect(() => {
+    if (category) {
+      FetchSubcategories(category.id, setSubcategories)
+    }
     if (category.subcategories && category.subcategories.length > 0) {
       setSelectedSubcategory(category.subcategories[0])
     }
+    //eslint-disable-next-line
   }, [category])
 
   return (
@@ -47,8 +54,8 @@ const Category = () => {
         </Label>
         <Container>
           <Subcategories>
-            {category.subcategories
-              ? category.subcategories.map(subcategory => (
+            {subcategories
+              ? subcategories.map(subcategory => (
                   <Subcategory
                     key={subcategory.id}
                     $selected={subcategory.id === selectedSubcategory.id}
