@@ -4,12 +4,14 @@ import { IoLocationOutline } from 'react-icons/io5'
 import { FaFacebook, FaWhatsapp, FaInstagram } from 'react-icons/fa'
 
 const FooterComponent = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
     <Footer>
       <FooterContent>
         <img src={logo} alt="Logo da Camel" />
         <p>
-          ©2023 - CAMEL ELETRICIDADE.
+          ©{currentYear} - CAMEL ELETRICIDADE.
           <br />
           <br />
           Todos os direitos reservados.
