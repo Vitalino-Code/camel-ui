@@ -28,7 +28,6 @@ export const Categories = styled.div`
   grid-area: categories;
   display: flex;
   position: relative;
-  z-index: 10000;
 
   & > button > svg {
     stroke: ${({ theme }) => theme.COLORS.WHITE};
@@ -74,6 +73,7 @@ export const ToggleCategories = styled.div`
   left: -16px;
   top: 134px;
   background-color: ${({ theme }) => theme.COLORS.ORANGE};
+  z-index: 2;
 
   overflow-y: auto;
   display: flex;

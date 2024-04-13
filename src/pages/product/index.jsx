@@ -20,16 +20,6 @@ import {
   ArrowIcon,
 } from './styles'
 
-//Mock images
-// const imgBaseUrl = '../src/assets/images'
-// const images = [
-//   `${imgBaseUrl}/img1.jpg`,
-//   `${imgBaseUrl}/img2.jpg`,
-//   `${imgBaseUrl}/img3.jpg`,
-//   `${imgBaseUrl}/img4.jpg`,
-//   `${imgBaseUrl}/img5.jpg`,
-// ]
-
 const Product = () => {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(1)
@@ -77,27 +67,34 @@ const Product = () => {
 
   //Add the product to the shopping cart
   const addToCart = () => {
-    if (item.available) {
-      let cart = JSON.parse(localStorage.getItem('cart'))
-      if (cart) {
-        let hasTheProduct = cart.some(product => product.id === id)
-        cart = hasTheProduct
-          ? cart.map(product =>
-              product.id === id
-                ? (product = {
-                    ...item,
-                    quantity: +product.quantity + +quantity,
-                  })
-                : product,
-            )
-          : [...cart, { ...item, quantity }]
+    if (localStorage.getItem('user')) {
+      if (item.available) {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if (cart) {
+          let hasTheProduct = cart.some(product => product.id === id)
+          cart = hasTheProduct
+            ? cart.map(product =>
+                product.id === id
+                  ? (product = {
+                      ...item,
+                      quantity: +product.quantity + +quantity,
+                    })
+                  : product,
+              )
+            : [...cart, { ...item, quantity }]
+        } else {
+          cart = [{ ...item, quantity }]
+        }
+        localStorage.setItem('cart', JSON.stringify(cart))
+        toast.success('Produto adicionado ao carrinho', { toastId: 'success' })
       } else {
-        cart = [{ ...item, quantity }]
+        toast.warn('Produto indisponível', { toastId: 'unavailable' })
       }
-      localStorage.setItem('cart', JSON.stringify(cart))
-      toast.success('Produto adicionado ao carrinho', { toastId: 'success' })
     } else {
-      toast.warn('Produto indisponível', { toastId: 'unavailable' })
+      navigate('/login')
+      return toast.warn('Faça login para adicionar produtos ao carrinho', {
+        toastId: 'area restrita',
+      })
     }
   }
 
