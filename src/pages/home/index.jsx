@@ -1,13 +1,12 @@
 import { CardContainer } from '../../components/common/CardContainer/index.jsx'
 import { MainLayout } from '../../components/layout/mainLayout/index.jsx'
 import { ProductCard } from '../../components/common/Card/index.jsx'
-import { brands } from '../../mock/brands.js'
-import { categories } from '../../mock/categories.js'
 import SwiperSlider from '../../components/common/SwiperSlider/index.jsx'
 
 import { useEffect, useState } from 'react'
 
 import { useFetchProducts } from '../../hooks/dataFetching/useFetchProducts.js'
+import { useFetchCategories } from '../../hooks/dataFetching/useFetchCategories.js'
 
 import Pagination from '../../components/common/pagination/index.jsx'
 
@@ -15,8 +14,11 @@ const Home = () => {
   const [products, setProducts] = useState([])
   const [pageCount, setPageCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
+  const [categories, setCategories] = useState([])
+  const [brands, setBrands] = useState([])
 
-  const fetchProducts = useFetchProducts().fetchProducts
+  const { fetchProducts } = useFetchProducts()
+  const { fetchCategories } = useFetchCategories()
 
   useEffect(() => {
     fetchProducts(({ products, pageCount }) => {
@@ -26,10 +28,19 @@ const Home = () => {
     //eslint-disable-next-line
   }, [currentPage])
 
+  useEffect(() => {
+    fetchCategories(categories => {
+      const brandsCategories = categories.filter(category => category.isBrand)
+
+      setCategories(categories)
+      setBrands(brandsCategories)
+    })
+  }, [])
+
   return (
     <>
       <MainLayout>
-        <SwiperSlider slides={categories} />
+        <SwiperSlider slides={categories} title={'Categorias'} />
         <CardContainer title="Produtos em Destaque">
           {products.map(product => (
             <ProductCard
@@ -42,7 +53,7 @@ const Home = () => {
           ))}
           <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
         </CardContainer>
-        <SwiperSlider slides={brands} />
+        <SwiperSlider slides={brands} title={'Marcas'} />
       </MainLayout>
     </>
   )
