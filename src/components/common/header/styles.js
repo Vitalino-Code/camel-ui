@@ -28,6 +28,7 @@ export const Categories = styled.div`
   grid-area: categories;
   display: flex;
   position: relative;
+  z-index: 10000;
 
   & > button > svg {
     stroke: ${({ theme }) => theme.COLORS.WHITE};

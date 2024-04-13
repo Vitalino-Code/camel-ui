@@ -7,6 +7,9 @@ import { priceFormatter } from '../../utils'
 import { useFetchProductById } from '../../hooks/dataFetching/useFetchProductByID'
 import { Carousel } from '../../components/common/carousel'
 
+import { relatedProducts } from '../../mock/relatedProducts.js'
+import SwiperSlider from '../../components/common/SwiperSlider/index.jsx'
+
 import {
   InfoArea,
   ProdArea,
@@ -159,6 +162,7 @@ const Product = () => {
           </button>
           {showMoreInfo && <p>{item.description}</p>}
         </MoreInfoArea>
+        <SwiperSlider slides={relatedProducts} />
       </MainLayout>
     </>
   )
