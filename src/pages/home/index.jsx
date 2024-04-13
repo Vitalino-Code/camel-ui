@@ -30,7 +30,6 @@ const Home = () => {
     <>
       <MainLayout>
         <SwiperSlider slides={categories} />
-        <Categories />
         <CardContainer title="Produtos em Destaque">
           {products.map(product => (
             <ProductCard
