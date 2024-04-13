@@ -29,7 +29,7 @@ const Home = () => {
     <>
       <MainLayout>
         <Categories />
-        <CardContainer>
+        <CardContainer title="Produtos em Destaque">
           {products.map(product => (
             <ProductCard
               key={product.id}
