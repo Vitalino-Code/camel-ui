@@ -21,19 +21,20 @@ import {
 } from './styles'
 
 //Mock images
-const imgBaseUrl = '../src/assets/images'
-const images = [
-  `${imgBaseUrl}/img1.jpg`,
-  `${imgBaseUrl}/img2.jpg`,
-  `${imgBaseUrl}/img3.jpg`,
-  `${imgBaseUrl}/img4.jpg`,
-  `${imgBaseUrl}/img5.jpg`,
-]
+// const imgBaseUrl = '../src/assets/images'
+// const images = [
+//   `${imgBaseUrl}/img1.jpg`,
+//   `${imgBaseUrl}/img2.jpg`,
+//   `${imgBaseUrl}/img3.jpg`,
+//   `${imgBaseUrl}/img4.jpg`,
+//   `${imgBaseUrl}/img5.jpg`,
+// ]
 
 const Product = () => {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(1)
   const [item, setItem] = useState({})
+  const [images, setImages] = useState([])
   const [showMoreInfo, setShowMoreInfo] = useState(false)
   const { FetchProductById } = useFetchProductById()
   const navigate = useNavigate()
@@ -63,6 +64,16 @@ const Product = () => {
     FetchProductById(id, setItem, handleError)
     //eslint-disable-next-line
   }, [id])
+
+  useEffect(() => {
+    const imagesUrls = []
+    if (item.images) {
+      item.images.map(image => {
+        imagesUrls.push(image.src)
+      })
+    }
+    setImages(imagesUrls)
+  }, [item])
 
   //Add the product to the shopping cart
   const addToCart = () => {

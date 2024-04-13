@@ -2,11 +2,11 @@ import FooterComponent from '../../common/footer'
 import Header from '../../common/header'
 import { Container } from './styles'
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, maxWidth }) => {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container $maxWidth={maxWidth}>{children}</Container>
       <FooterComponent />
     </>
   )
