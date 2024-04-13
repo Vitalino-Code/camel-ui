@@ -11,6 +11,12 @@ export const Container = styled.div`
   margin-bottom: 7rem;
   margin-top: 5rem;
 
+  h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.4rem;
+  }
+
   .swiper {
     width: 100%;
     height: 100%;

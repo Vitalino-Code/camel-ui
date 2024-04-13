@@ -5,13 +5,14 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-const SwiperSlider = ({ slides }) => {
+const SwiperSlider = ({ slides, title }) => {
   return (
     <Container>
+      <h1>{title}</h1>
       <SwiperContainer>
         <Swiper
           modules={[Navigation, Pagination]}
-          slidesPerView={slides.length < 3 ? slides.length : 1}
+          slidesPerView={slides.length < 5 ? slides.length : 5}
           breakpoints={{
             400: {
               slidesPerView: 2,
@@ -37,15 +38,15 @@ const SwiperSlider = ({ slides }) => {
           {slides.map(item => (
             <SwiperSlide key={item.id}>
               <a href="#">
-                <img src={item.image} alt={`Logo da ${item.title}`} />
-                {item.name ? (
+                <img src={item.images[0].src} alt={`Logo da ${item.name}`} />
+                {item.price ? (
                   <>
                     <span>{item.name}</span>
                     <span className="discount">{item.discount}</span>
                     <span className="price">{item.price}</span>
                   </>
                 ) : (
-                  <span>{item.title}</span>
+                  <span>{item.name}</span>
                 )}
               </a>
             </SwiperSlide>

@@ -125,7 +125,7 @@ const Header = () => {
           ></LockScreen>
 
           <FixedCategories>
-            {categories.slice(0, 4).map(category => (
+            {categories.slice(0, 6).map(category => (
               <li key={category.id}>
                 <Link to={`/categoria/${category.id}`}>{category.name}</Link>
               </li>

@@ -9,7 +9,7 @@ const useFetchCategories = () => {
   const fetchCategories = async successCallback => {
     try {
       setIsLoading(true)
-      const response = await api.get(`/categories`)
+      const response = await api.get(`/categories?limit=50`)
       setCategories(response.data)
       successCallback(response.data)
     } catch (error) {
