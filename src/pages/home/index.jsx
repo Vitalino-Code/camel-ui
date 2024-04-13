@@ -35,6 +35,7 @@ const Home = () => {
       setCategories(categories)
       setBrands(brandsCategories)
     })
+    //eslint-disable-next-line
   }, [])
 
   return (
