@@ -23,7 +23,7 @@ const CartItem = ({
 
   return (
     <>
-      <Container>
+      <Container $fade={product.check}>
         <div>
           <label htmlFor="addItem">
             <input

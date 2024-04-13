@@ -8,6 +8,9 @@ export const Container = styled.div`
 
   gap: 1rem;
   padding: 2rem 0.5rem;
+  transition: 0.3s;
+
+  ${props => (props.$fade ? `opacity: 100%;` : `opacity: 40%;`)}
 
   @media (min-width: 500px) {
     display: flex;
