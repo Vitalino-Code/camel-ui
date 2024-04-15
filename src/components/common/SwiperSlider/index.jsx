@@ -37,8 +37,12 @@ const SwiperSlider = ({ slides, title }) => {
         >
           {slides.map(item => (
             <SwiperSlide key={item.id}>
-              <a href="#">
-                <img src={item.images[0].src} alt={`Logo da ${item.name}`} />
+              <a href={`categoria/${item.id}`}>
+                {item.images[0] ? (
+                  <img src={item.images[0].src} alt={`Logo da ${item.name}`} />
+                ) : (
+                  ''
+                )}
                 {item.price ? (
                   <>
                     <span>{item.name}</span>
