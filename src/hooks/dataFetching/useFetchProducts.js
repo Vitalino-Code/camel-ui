@@ -27,6 +27,7 @@ const useFetchProducts = () => {
       const { data } = response
       const pageCount = Math.ceil(response.headers['x-count'] / perPage)
       setProducts(data)
+      console.log(data)
       successCallback({ products: data, pageCount })
     } catch (error) {
       setError(error)
