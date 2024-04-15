@@ -9,9 +9,9 @@ const useFetchSubcategories = () => {
   const FetchSubcategories = async (categoryId, successCallback) => {
     try {
       setIsLoading(true)
-      const response = await api.get(`/categories/subcategory/${categoryId}`)
-      setSubcategories(response.data[0].subcategories)
-      successCallback(response.data[0].subcategories)
+      const response = await api.get(`/categories/${categoryId}`)
+      setSubcategories(response.data.subcategories)
+      successCallback(response.data.subcategories)
     } catch (error) {
       setError(error)
     } finally {
