@@ -8,7 +8,7 @@ import { FaUser } from 'react-icons/fa'
 import { IoExit } from 'react-icons/io5'
 import { IoClose } from 'react-icons/io5'
 import { IoMdSearch } from 'react-icons/io'
-import { PiUserList } from 'react-icons/pi'
+// import { PiUserList } from 'react-icons/pi'
 import { TiShoppingCart } from 'react-icons/ti'
 import { HiOutlineMenuAlt2 } from 'react-icons/hi'
 
@@ -155,12 +155,12 @@ const Header = () => {
 
           {user && (
             <ul>
-              <li>
+              {/* <li>
                 <Link to={'/profile'}>
                   <PiUserList size={22} />
                   <p>Meu Perfil</p>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to={'/carrinho'}>
                   <TiShoppingCart size={22} />
