@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import Home from '../pages/home'
 import { Category } from '../pages/category'
+import { Home } from '../pages/home'
+import { Product } from '../pages/product'
 import { ShoppingCart } from '../pages/shoppingCart'
 import { SignIn } from '../pages/SignIn'
 import { SignUp } from '../pages/SignUp'
-import { Product } from '../pages/product'
+import { SearchResult } from '../pages/searchResult/index'
 import { UserManagement } from '../pages/crud/index'
 
 export const RoutesManager = () => {
@@ -20,6 +21,7 @@ export const RoutesManager = () => {
           <Route path="/produto/:id" element={<Product />} />
           <Route path="/carrinho" element={<ShoppingCart />} />
           <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/busca/:searchParam" element={<SearchResult />} />
         </Routes>
       </BrowserRouter>
     </>

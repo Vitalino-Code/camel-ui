@@ -15,6 +15,8 @@ const FooterComponent = () => {
           <br />
           <br />
           Todos os direitos reservados.
+          <br /> Aviso Legal: Produtos fictícios apresentados apenas para
+          estudo, não disponíveis para compra ou existentes no mercado.
         </p>
         <FooterLinks>
           <FooterLink>

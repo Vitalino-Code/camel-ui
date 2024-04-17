@@ -1,8 +1,10 @@
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useFetchCategories } from '../../../hooks/dataFetching/useFetchCategories'
+
 import Button from '../Button'
+import { useFetchCategories } from '../../../hooks/dataFetching/useFetchCategories'
+import { useFetchProducts } from '../../../hooks/dataFetching/useFetchProducts'
 
 import { FaUser } from 'react-icons/fa'
 import { IoExit } from 'react-icons/io5'
@@ -24,6 +26,8 @@ import {
   UserButton,
   UserArea,
   SearchBar,
+  SearchButton,
+  SeachResults,
 } from './styles'
 
 import { useSignOut } from '../../../hooks/auth/useSignOut'
@@ -32,19 +36,18 @@ import { useAuth } from '../../../contexts/authContext'
 
 const Header = () => {
   const navigate = useNavigate()
-
-  const [categories, setCategories] = useState([])
-
-  const [showUserArea, setShowUserArea] = useState(false)
-  const [showToggleCategories, setShowToggleCategories] = useState(false)
   const { signOut } = useSignOut()
   const { user } = useAuth()
 
+  const [categories, setCategories] = useState([])
+  const [showUserArea, setShowUserArea] = useState(false)
+  const [showToggleCategories, setShowToggleCategories] = useState(false)
+  const [searchParam, setSearchParam] = useState('')
+  const [searchResult, setSearchResult] = useState([])
+  const [showSearchResult, setShowSearchResult] = useState(false)
+
   const fetchCategories = useFetchCategories().fetchCategories
-  useEffect(() => {
-    fetchCategories(setCategories)
-    // eslint-disable-next-line
-  }, [setCategories])
+  const fetchProducts = useFetchProducts().fetchProducts
 
   const handleError = error => {
     if (error) {
@@ -81,6 +84,11 @@ const Header = () => {
   }
 
   useEffect(() => {
+    fetchCategories(setCategories)
+    // eslint-disable-next-line
+  }, [setCategories])
+
+  useEffect(() => {
     if (showToggleCategories) {
       document.documentElement.style.overflowY = 'hidden'
     } else {
@@ -91,6 +99,28 @@ const Header = () => {
 
     // setUserData
   }, [showToggleCategories])
+
+  useEffect(() => {
+    fetchProducts(setSearchResult, 0, 10, '', searchParam)
+    //eslint-disable-next-line
+  }, [searchParam])
+
+  const changeSearchDisplay = status => {
+    if (status) {
+      setShowSearchResult(true)
+    } else {
+      const timer = setTimeout(() => {
+        setShowSearchResult(false)
+      }, 200) // 300ms de atraso antes de ocultar o componente
+      return () => clearTimeout(timer)
+    }
+  }
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      navigate(`/busca/${searchParam}`)
+    }
+  }
 
   return (
     <Container>
@@ -181,8 +211,29 @@ const Header = () => {
       </UserButton>
 
       <SearchBar>
-        <input type="search" placeholder="Procure na Camel" />
-        <IoMdSearch size={18} />
+        <input
+          type="search"
+          placeholder="Procure na Camel"
+          value={searchParam}
+          onChange={e => setSearchParam(e.target.value)}
+          onFocus={() => changeSearchDisplay(true)}
+          onBlur={() => changeSearchDisplay(false)}
+          onKeyDown={handleKeyDown}
+        />
+        <SearchButton onClick={() => navigate(`/busca/${searchParam}`)}>
+          <IoMdSearch size={18} />
+        </SearchButton>
+        <SeachResults $showSearchResult={showSearchResult && searchParam}>
+          {searchResult.products && searchResult.products.length > 0 ? (
+            searchResult.products.map(produto => (
+              <Link to={`/produto/${produto.id}`} key={produto.id}>
+                {produto.name}
+              </Link>
+            ))
+          ) : (
+            <span>Desculpe, não encontramos esse produto</span>
+          )}
+        </SeachResults>
       </SearchBar>
     </Container>
   )
