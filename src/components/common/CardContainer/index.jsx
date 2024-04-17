@@ -7,7 +7,7 @@ export const CardContainer = ({ title, children }) => {
       <ProductContainer>
         {React.Children.toArray(children).slice(0, -1)}
       </ProductContainer>
-      {children[children.length - 1]}
+      {children ? children[children.length - 1] : ''}
     </Container>
   )
 }

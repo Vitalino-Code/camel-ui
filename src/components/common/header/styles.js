@@ -185,6 +185,7 @@ export const FixedCategories = styled.ul`
     gap: 2rem;
     width: 100%;
     padding: 5px 0;
+    overflow: hidden !important;
 
     & > :hover {
       border: 0.2rem solid #fff;
@@ -331,13 +332,14 @@ export const UserArea = styled.div`
 
 export const SearchBar = styled.div`
   grid-area: searchBar;
+  position: relative;
 
   margin: auto 0;
   display: flex;
 
   background-color: #fff;
   padding: 0.6rem 1.2rem;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
   height: fit-content;
 
   & > input {
@@ -351,4 +353,46 @@ export const SearchBar = styled.div`
   & > svg {
     fill: ${({ theme }) => theme.COLORS.GRAY};
   }
+`
+
+export const SeachResults = styled.div`
+  position: absolute;
+  top: 27px;
+  left: 0px;
+
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+
+  background-color: white;
+  color: ${({ theme }) => theme.COLORS.GRAY};
+  box-shadow: 5px 10px 20px -1px rgba(0, 0, 0, 0.5);
+  text-align: start;
+
+  & > a {
+    display: block;
+    color: ${({ theme }) => theme.COLORS.GRAY};
+  }
+
+  & > span {
+    text-align: center;
+    display: block;
+  }
+
+  ${props =>
+    props.$showSearchResult
+      ? `transform: translateX(0);
+        transition: 0.3s;`
+      : `height: 0px;
+      padding-block: 0;
+      transition: opacity 0.3s ease 0s;
+      overflow: hidden;
+      transition: 0.2s;`}
+`
+
+export const SearchButton = styled.button`
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
