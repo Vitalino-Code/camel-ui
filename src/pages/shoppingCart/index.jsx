@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import { CartItem } from '../../components/common/cartItem'
 import { MainLayout } from '../../components/layout/mainLayout'
 import { priceFormatter } from '../../utils'
+import { useCreateOrder } from '../../hooks/dataCreating/useCreateOrder'
 
 import { FaTrashAlt } from 'react-icons/fa'
 
@@ -15,10 +16,13 @@ import {
   ProductList,
   Total,
 } from './styles'
+import { toast } from 'react-toastify'
 
 const ShoppingCart = () => {
   const [products, setProducts] = useState([])
   const [firstRun, setFirstRun] = useState(true)
+  const { createOrder } = useCreateOrder()
+  const navigate = useNavigate()
 
   //Performs the first load of data from localStorage
   useEffect(() => {
@@ -85,6 +89,29 @@ const ShoppingCart = () => {
     }, 0)
   }
 
+  const handleCreatedOrder = () => {
+    navigate('/')
+    toast.success(
+      'Orçamento Gerado com sucesso. Nosso vendedor em breve entrará em contato.',
+    )
+    localStorage.removeItem('cart')
+  }
+
+  const handleGenerateBudget = () => {
+    const ShoppingList = []
+    products.map(product =>
+      ShoppingList.push({ id: product.id, quantity: product.quantity }),
+    )
+    const order = {
+      total: priceFormatter(getTotal(), 'BRL'),
+      userID: JSON.parse(localStorage.getItem('user')).id,
+      products: ShoppingList,
+    }
+    createOrder(order, handleCreatedOrder, () => {
+      toast.warn('Erro ao gerar o pedido. Tente outra vez')
+    })
+  }
+
   return (
     <>
       <MainLayout>
@@ -112,7 +139,7 @@ const ShoppingCart = () => {
               <Total>
                 Total: <span>{priceFormatter(getTotal(), 'BRL')}</span>
               </Total>
-              <Budget>Gerar Orçamento</Budget>
+              <Budget onClick={handleGenerateBudget}>Gerar Orçamento</Budget>
             </div>
           ) : (
             <EmptyCart>

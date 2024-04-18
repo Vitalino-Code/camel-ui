@@ -13,6 +13,7 @@ const useSignOut = () => {
 
     try {
       await logout()
+      localStorage.removeItem('cart')
       successCallback()
     } catch (error) {
       setError(error)
