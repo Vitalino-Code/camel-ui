@@ -11,12 +11,17 @@ const useFetchProducts = () => {
     page,
     perPage = 15,
     subcategoryID,
+    searchParam,
   ) => {
     const offset = page * perPage
     const queryParams = [`limit=${perPage}`, `offset=${offset}`]
 
     if (subcategoryID) {
       queryParams.push(`subcategoryID=${subcategoryID}`)
+    }
+
+    if (searchParam) {
+      queryParams.push(`search=${searchParam}`)
     }
 
     const queryString = queryParams.join('&')
