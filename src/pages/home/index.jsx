@@ -31,8 +31,9 @@ const Home = () => {
   useEffect(() => {
     fetchCategories(categories => {
       const brandsCategories = categories.filter(category => category.isBrand)
+      const trueCategories = categories.filter(category => !category.isBrand)
 
-      setCategories(categories)
+      setCategories(trueCategories)
       setBrands(brandsCategories)
     })
     //eslint-disable-next-line
