@@ -84,7 +84,11 @@ const Header = () => {
   }
 
   useEffect(() => {
-    fetchCategories(setCategories)
+    fetchCategories(categories => {
+      const trueCategories = categories.filter(category => !category.isBrand)
+
+      setCategories(trueCategories)
+    })
     // eslint-disable-next-line
   }, [setCategories])
 
