@@ -12,8 +12,11 @@ const SwiperSlider = ({ slides, title }) => {
       <SwiperContainer>
         <Swiper
           modules={[Navigation, Pagination]}
-          slidesPerView={slides.length < 5 ? slides.length : 5}
           breakpoints={{
+            100: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
             400: {
               slidesPerView: 2,
               spaceBetween: 10,
