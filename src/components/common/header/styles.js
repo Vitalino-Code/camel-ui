@@ -359,6 +359,7 @@ export const SeachResults = styled.div`
   position: absolute;
   top: 27px;
   left: 0px;
+  z-index: 2;
 
   width: 100%;
   padding: 0.6rem 1.2rem;
