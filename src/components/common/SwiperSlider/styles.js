@@ -14,7 +14,7 @@ export const Container = styled.div`
   h1 {
     text-align: center;
     margin-bottom: 3rem;
-    font-size: 2.4rem;
+    font-size: ${({ type }) => (type === 'produto' ? '1.8rem' : '2.4rem')};
   }
 
   .swiper {
