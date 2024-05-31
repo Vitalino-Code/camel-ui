@@ -7,8 +7,7 @@ import { priceFormatter } from '../../utils'
 import { useFetchProductById } from '../../hooks/dataFetching/useFetchProductByID'
 import { Carousel } from '../../components/common/carousel'
 
-// import { relatedProducts } from '../../mock/relatedProducts.js'
-// import SwiperSlider from '../../components/common/SwiperSlider/index.jsx'
+import SwiperSlider from '../../components/common/SwiperSlider/index.jsx'
 
 import {
   InfoArea,
@@ -19,6 +18,7 @@ import {
   MoreInfoArea,
   ArrowIcon,
 } from './styles'
+import { useFetchRelatedProducts } from '../../hooks/dataFetching/useFecthRelatedProducts.js'
 
 const Product = () => {
   const { id } = useParams()
@@ -26,6 +26,8 @@ const Product = () => {
   const [item, setItem] = useState({})
   const [images, setImages] = useState([])
   const [showMoreInfo, setShowMoreInfo] = useState(false)
+  const [relatedProducts, setRelatedProducts] = useState([])
+  const { FecthRelatedProducts } = useFetchRelatedProducts()
   const { FetchProductById } = useFetchProductById()
   const navigate = useNavigate()
   const moreInfoRef = useRef()
@@ -52,6 +54,7 @@ const Product = () => {
   //Upload product information
   useEffect(() => {
     FetchProductById(id, setItem, handleError)
+    FecthRelatedProducts(id, setRelatedProducts)
     //eslint-disable-next-line
   }, [id])
 
@@ -159,7 +162,11 @@ const Product = () => {
           </button>
           {showMoreInfo && <p>{item.description}</p>}
         </MoreInfoArea>
-        {/* <SwiperSlider slides={relatedProducts} /> */}
+        <SwiperSlider
+          slides={relatedProducts}
+          title={'Produtos Relacionados'}
+          type={'produto'}
+        />
       </MainLayout>
     </>
   )

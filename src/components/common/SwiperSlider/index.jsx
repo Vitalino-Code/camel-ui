@@ -5,9 +5,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-const SwiperSlider = ({ slides, title }) => {
+const SwiperSlider = ({ slides, title, type = 'categoria' }) => {
   return (
-    <Container>
+    <Container type={type}>
       <h1>{title}</h1>
       <SwiperContainer>
         <Swiper
@@ -40,7 +40,7 @@ const SwiperSlider = ({ slides, title }) => {
         >
           {slides.map(item => (
             <SwiperSlide key={item.id}>
-              <a href={`categoria/${item.id}`}>
+              <a href={`${type == 'produto' ? '' : 'categoria/'}${item.id}`}>
                 {item.images[0] ? (
                   <img src={item.images[0].src} alt={`Logo da ${item.name}`} />
                 ) : (
