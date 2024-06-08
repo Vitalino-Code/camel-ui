@@ -50,7 +50,7 @@ const SwiperSlider = ({ slides, title, type = 'categoria' }) => {
                   id={item.id}
                 />
               ) : (
-                <a href={`'categoria/${item.id}`}>
+                <a href={`categoria/${item.id}`}>
                   {item.images[0] && (
                     <img
                       src={item.images[0].src}
