@@ -16,17 +16,42 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [categories, setCategories] = useState([])
   const [brands, setBrands] = useState([])
+  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage())
 
   const { fetchProducts } = useFetchProducts()
   const { fetchCategories } = useFetchCategories()
 
+  function getItemsPerPage() {
+    const width = window.innerWidth
+    if (width <= 375) return 3
+    if (width <= 450) return 4
+    if (width <= 768) return 6
+    if (width <= 1024) return 8
+    return 10
+  }
+
   useEffect(() => {
-    fetchProducts(({ products, pageCount }) => {
-      setProducts(products)
-      setPageCount(pageCount)
-    }, currentPage)
+    function handleResize() {
+      setItemsPerPage(getItemsPerPage())
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchProducts(
+      ({ products, pageCount }) => {
+        setProducts(products)
+        setPageCount(pageCount)
+      },
+      currentPage,
+      itemsPerPage,
+    )
     //eslint-disable-next-line
-  }, [currentPage])
+  }, [currentPage, itemsPerPage])
 
   useEffect(() => {
     fetchCategories(categories => {

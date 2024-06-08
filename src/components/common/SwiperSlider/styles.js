@@ -8,8 +8,8 @@ export const Container = styled.div`
   border-radius: 1rem;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 7rem;
-  margin-top: 5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 
   h1 {
     text-align: center;

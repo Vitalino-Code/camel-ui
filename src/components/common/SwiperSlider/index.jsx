@@ -4,6 +4,7 @@ import { Container, SwiperContainer } from './styles'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { priceFormatter } from '../../../utils'
 
 const SwiperSlider = ({ slides, title, type = 'categoria' }) => {
   return (
@@ -50,7 +51,9 @@ const SwiperSlider = ({ slides, title, type = 'categoria' }) => {
                   <>
                     <span>{item.name}</span>
                     <span className="discount">{item.discount}</span>
-                    <span className="price">{item.price}</span>
+                    <span className="price">
+                      {priceFormatter(item.price, 'BRL')}
+                    </span>
                   </>
                 ) : (
                   <span>{item.name}</span>

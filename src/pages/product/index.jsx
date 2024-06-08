@@ -27,7 +27,8 @@ const Product = () => {
   const [images, setImages] = useState([])
   const [showMoreInfo, setShowMoreInfo] = useState(false)
   const [relatedProducts, setRelatedProducts] = useState([])
-  const { FecthRelatedProducts } = useFetchRelatedProducts()
+  const [boughtTogetherProducts, setBoughtTogetherProducts] = useState([])
+  const { FetchRelatedProducts } = useFetchRelatedProducts()
   const { FetchProductById } = useFetchProductById()
   const navigate = useNavigate()
   const moreInfoRef = useRef()
@@ -54,7 +55,8 @@ const Product = () => {
   //Upload product information
   useEffect(() => {
     FetchProductById(id, setItem, handleError)
-    FecthRelatedProducts(id, setRelatedProducts)
+    FetchRelatedProducts(id, 'related', setRelatedProducts)
+    FetchRelatedProducts(id, 'bought-together', setBoughtTogetherProducts)
     //eslint-disable-next-line
   }, [id])
 
@@ -162,6 +164,11 @@ const Product = () => {
           </button>
           {showMoreInfo && <p>{item.description}</p>}
         </MoreInfoArea>
+        <SwiperSlider
+          slides={boughtTogetherProducts}
+          title={'Frequentemente Comprados Juntos'}
+          type={'produto'}
+        />
         <SwiperSlider
           slides={relatedProducts}
           title={'Produtos Relacionados'}

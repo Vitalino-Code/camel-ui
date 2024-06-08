@@ -6,11 +6,15 @@ const useFetchRelatedProducts = () => {
   const [relatedProducts, setRelatedProducts] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const FecthRelatedProducts = async (mainProductId, successCallback) => {
+  const FetchRelatedProducts = async (
+    mainProductId,
+    recommendationType,
+    successCallback,
+  ) => {
     try {
       setIsLoading(true)
       const response = await api.get(
-        `/products/${mainProductId}/recommendations`,
+        `/products/${mainProductId}/recommendations?type=${recommendationType}`,
       )
       setRelatedProducts(response.data)
       successCallback(response.data)
@@ -21,7 +25,7 @@ const useFetchRelatedProducts = () => {
     }
   }
 
-  return { error, relatedProducts, isLoading, FecthRelatedProducts }
+  return { error, relatedProducts, isLoading, FetchRelatedProducts }
 }
 
 export { useFetchRelatedProducts }
