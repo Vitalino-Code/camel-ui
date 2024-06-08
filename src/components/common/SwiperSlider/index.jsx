@@ -4,7 +4,7 @@ import { Container, SwiperContainer } from './styles'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { priceFormatter } from '../../../utils'
+import { ProductCard } from '../../../components/common/Card/index.jsx'
 
 const SwiperSlider = ({ slides, title, type = 'categoria' }) => {
   return (
@@ -41,24 +41,25 @@ const SwiperSlider = ({ slides, title, type = 'categoria' }) => {
         >
           {slides.map(item => (
             <SwiperSlide key={item.id}>
-              <a href={`${type == 'produto' ? '' : 'categoria/'}${item.id}`}>
-                {item.images[0] ? (
-                  <img src={item.images[0].src} alt={`Logo da ${item.name}`} />
-                ) : (
-                  ''
-                )}
-                {item.price ? (
-                  <>
-                    <span>{item.name}</span>
-                    <span className="discount">{item.discount}</span>
-                    <span className="price">
-                      {priceFormatter(item.price, 'BRL')}
-                    </span>
-                  </>
-                ) : (
+              {type === 'produto' ? (
+                <ProductCard
+                  key={item.id}
+                  name={item.name}
+                  price={item.price}
+                  productImages={item.images}
+                  id={item.id}
+                />
+              ) : (
+                <a href={`'categoria/${item.id}`}>
+                  {item.images[0] && (
+                    <img
+                      src={item.images[0].src}
+                      alt={`Logo da ${item.name}`}
+                    />
+                  )}
                   <span>{item.name}</span>
-                )}
-              </a>
+                </a>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
